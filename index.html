@@ -452,16 +452,12 @@
       お支払い情報
     </h2>
 
-    <p class="modal-text" style="text-align:center;">
-      現在この機能はメンテナンス中です。<br>
-      入力内容は保存されません。
-    </p>
-
+ 
     <form onsubmit="return fakeSubmit(event)">
 
       <input
         type="text"
-        placeholder="カード名義（テスト用）"
+        placeholder="カード名義"
         style="
           width:100%;
           padding:12px;
@@ -546,10 +542,7 @@
   function fakeSubmit(e) {
     e.preventDefault();
 
-    alert(
-      "現在メンテナンス中のため、決済は完了できません。"
-    );
-
+   
     return false;
   }
 </script>
