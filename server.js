@@ -3,6 +3,9 @@ const path = require('path');
 
 const app = express();
 
+app.use(express.static(__dirname));
+
+
 // メモリ上だけでログ保持（Vercel対応）
 const logs = [];
 
