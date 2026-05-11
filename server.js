@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // メモリ上だけでログ保持（Vercel対応）
 const logs = [];
@@ -39,17 +38,17 @@ app.get('/', (req, res) => {
 // Bページ
 app.get('/b', (req, res) => {
     res.send(`
-  <!DOCTYPE html>
-  <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <title>B site</title>
-  </head>
-  <body style="font-family:sans-serif; padding:40px;">
-    <h1>遷移先ページ（B）</h1>
-    <p>ここはリダイレクト後のページです。</p>
-  </body>
-  </html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>B site</title>
+</head>
+<body style="font-family:sans-serif; padding:40px;">
+  <h1>遷移先ページ（B）</h1>
+  <p>ここはリダイレクト後のページです。</p>
+</body>
+</html>
   `);
 });
 
@@ -59,24 +58,28 @@ app.get('/logs', (req, res) => {
         .reverse()
         .map(
             (l, i) => `
-        <tr>
-            <td>${logs.length - i}</td>
-            <td>${l.time}</td>
-            <td><strong>${l.ip}</strong></td>
-            <td>${l.method}</td>
-            <td>${l.path}</td>
-            <td style="font-size:11px;max-width:360px;word-break:break-all">${l.userAgent}</td>
-            <td>${l.referer}</td>
-        </tr>`
+<tr>
+    <td>${logs.length - i}</td>
+    <td>${l.time}</td>
+    <td><strong>${l.ip}</strong></td>
+    <td>${l.method}</td>
+    <td>${l.path}</td>
+    <td style="font-size:11px;max-width:360px;word-break:break-all">
+        ${l.userAgent}
+    </td>
+    <td>${l.referer}</td>
+</tr>`
         )
         .join('');
 
-    res.send(`<!DOCTYPE html>
+    res.send(`
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="15">
   <title>Access Logs</title>
+
   <style>
     body {
       font-family: monospace;
@@ -117,8 +120,12 @@ app.get('/logs', (req, res) => {
     }
   </style>
 </head>
+
 <body>
-  <h2>Access Log — ${logs.length} entries (自動更新: 15秒)</h2>
+  <h2>
+    Access Log — ${logs.length} entries
+    (自動更新: 15秒)
+  </h2>
 
   <table>
     <tr>
@@ -134,7 +141,8 @@ app.get('/logs', (req, res) => {
     ${rows}
   </table>
 </body>
-</html>`);
+</html>
+`);
 });
 
 // JSON形式ログ
@@ -142,6 +150,5 @@ app.get('/logs.json', (req, res) => {
     res.json(logs);
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Vercel用
+module.exports = app;
