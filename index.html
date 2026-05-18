@@ -1,996 +1,556 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KURA MARKET</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-<style>
-
-:root{
-  --bg:#f5f0e8;
-  --card:#fffdf8;
-  --dark:#1a1410;
-  --accent:#c84b2f;
-  --muted:#8a8070;
-  --border:#e0d8c8;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  background:var(--bg);
-  color:var(--dark);
-  font-family:'DM Sans',sans-serif;
-  line-height:1.6;
-}
-
-/* HEADER */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(255,253,248,.95);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--border);
-}
-
-nav{
-  max-width:1300px;
-  margin:auto;
-  height:72px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 40px;
-}
-
-.logo{
-  font-family:'Shippori Mincho',serif;
-  font-size:26px;
-  font-weight:700;
-  text-decoration:none;
-  color:var(--dark);
-  letter-spacing:.08em;
-}
-
-.logo span{
-  color:var(--accent);
-}
-
-.nav-links{
-  display:flex;
-  gap:28px;
-  list-style:none;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:var(--muted);
-  font-size:14px;
-  transition:.2s;
-}
-
-.nav-links a:hover{
-  color:var(--dark);
-}
-
-.cart-btn{
-  background:var(--dark);
-  color:white;
-  border:none;
-  padding:12px 20px;
-  cursor:pointer;
-  font-size:13px;
-}
-
-/* HERO */
-
-.hero{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  min-height:600px;
-}
-
-.hero-left{
-  padding:100px 80px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.hero-tag{
-  color:var(--accent);
-  letter-spacing:.2em;
-  font-size:12px;
-  margin-bottom:18px;
-}
-
-.hero h1{
-  font-family:'Shippori Mincho',serif;
-  font-size:64px;
-  line-height:1.2;
-  margin-bottom:24px;
-}
-
-.hero p{
-  color:var(--muted);
-  max-width:420px;
-  margin-bottom:40px;
-}
-
-.hero button{
-  width:220px;
-  padding:16px;
-  border:none;
-  background:var(--accent);
-  color:white;
-  cursor:pointer;
-  font-size:14px;
-}
-
-.hero-right{
-  background:#e8dfcf;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:140px;
-}
-
-/* SECTION */
-
-.section{
-  max-width:1300px;
-  margin:auto;
-  padding:80px 40px;
-}
-
-.section-title{
-  font-family:'Shippori Mincho',serif;
-  font-size:34px;
-  margin-bottom:8px;
-}
-
-.section-sub{
-  color:var(--muted);
-  margin-bottom:40px;
-}
-
-/* PRODUCTS */
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:24px;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  overflow:hidden;
-  transition:.2s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 30px rgba(0,0,0,.08);
-}
-
-.card-img{
-  height:240px;
-  background:#efe7d8;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:72px;
-}
-
-.card-body{
-  padding:20px;
-}
-
-.tag{
-  color:var(--accent);
-  font-size:11px;
-  letter-spacing:.15em;
-  margin-bottom:8px;
-}
-
-.product-name{
-  font-size:16px;
-  margin-bottom:10px;
-  font-weight:500;
-}
-
-.price{
-  color:var(--accent);
-  font-size:22px;
-  font-weight:700;
-  margin-bottom:16px;
-}
-
-.card button{
-  width:100%;
-  padding:12px;
-  border:none;
-  background:var(--dark);
-  color:white;
-  cursor:pointer;
-}
-
-/* FEATURE */
-
-.feature{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:48px;
-  align-items:center;
-}
-
-.feature-image{
-  height:420px;
-  background:#ddd2bf;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:120px;
-}
-
-.feature-content h2{
-  font-family:'Shippori Mincho',serif;
-  font-size:42px;
-  margin-bottom:20px;
-}
-
-.feature-content p{
-  color:var(--muted);
-  margin-bottom:28px;
-}
-
-/* RANKING */
-
-.ranking-list{
-  display:grid;
-  gap:18px;
-}
-
-.rank-item{
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:20px;
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-
-.rank-number{
-  font-size:28px;
-  font-weight:700;
-  color:var(--accent);
-}
-
-/* BRAND */
-
-.brand-box{
-  background:var(--dark);
-  color:white;
-  padding:60px;
-}
-
-.brand-box h2{
-  font-family:'Shippori Mincho',serif;
-  margin-bottom:20px;
-  font-size:38px;
-}
-
-.brand-box p{
-  color:#c9c0b0;
-  max-width:700px;
-}
-
-/* REVIEW */
-
-.reviews{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-
-.review{
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:28px;
-}
-
-.review strong{
-  display:block;
-  margin-bottom:10px;
-}
-
-/* PRODUCT DETAIL */
-
-.product-detail{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-}
-
-.detail-image{
-  height:520px;
-  background:#e8dfcf;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:160px;
-}
-
-.detail-info h1{
-  font-family:'Shippori Mincho',serif;
-  font-size:42px;
-  margin-bottom:18px;
-}
-
-.detail-price{
-  font-size:32px;
-  color:var(--accent);
-  margin-bottom:20px;
-}
-
-.detail-info button{
-  margin-top:24px;
-  width:100%;
-  padding:16px;
-  border:none;
-  background:var(--accent);
-  color:white;
-  cursor:pointer;
-  font-size:15px;
-}
-
-/* CHECKOUT */
-
-.checkout{
-  max-width:700px;
-  margin:auto;
-}
-
-.checkout form{
-  display:grid;
-  gap:18px;
-}
-
-.checkout input{
-  padding:16px;
-  border:1px solid var(--border);
-  background:white;
-}
-
-.checkout button{
-  padding:16px;
-  border:none;
-  background:var(--dark);
-  color:white;
-  cursor:pointer;
-}
-
-/* FOOTER */
-
-footer{
-  margin-top:100px;
-  background:#12100e;
-  color:#807565;
-  padding:70px 40px;
-}
-
-.footer-inner{
-  max-width:1300px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:40px;
-}
-
-.footer-logo{
-  color:white;
-  font-family:'Shippori Mincho',serif;
-  font-size:26px;
-  margin-bottom:20px;
-}
-
-.footer-col h4{
-  color:white;
-  margin-bottom:16px;
-}
-
-.footer-col ul{
-  list-style:none;
-}
-
-.footer-col li{
-  margin-bottom:10px;
-}
-
-.footer-bottom{
-  margin-top:40px;
-  text-align:center;
-  color:#5c5247;
-  font-size:13px;
-}
-
-@media(max-width:900px){
-
-.hero,
-.feature,
-.product-detail{
-  grid-template-columns:1fr;
-}
-
-.products,
-.reviews{
-  grid-template-columns:1fr 1fr;
-}
-
-}
-
-@media(max-width:600px){
-
-.products,
-.reviews{
-  grid-template-columns:1fr;
-}
-
-nav{
-  padding:0 20px;
-}
-
-.hero-left{
-  padding:60px 24px;
-}
-
-.section{
-  padding:60px 24px;
-}
-
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KURA MARKET</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --dark: #1a1410;
+      --accent: #c84b2f;
+      --muted: #8a8070;
+      --card: #fffdf8;
+      --border: #e0d8c8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-right button {
+      background: var(--dark);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+
+    .hero-text {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 52px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 360px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 14px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .hero-image {
+      background: #e8e0d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+    }
+
+    .section {
+      padding: 64px 48px;
+    }
+
+    .section-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 36px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: .2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .product-img {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      background: #f0ebe0;
+    }
+
+    .product-body {
+      padding: 16px;
+    }
+
+    .product-tag {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .product-rating {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .product-rating span {
+      color: #e8a020;
+    }
+
+    .product-price {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .product-original {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-bottom: 12px;
+    }
+
+    .btn-add {
+      width: 100%;
+      background: var(--dark);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .promo-banner {
+      background: var(--dark);
+      color: white;
+      padding: 64px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .promo-banner h2 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .promo-banner p {
+      color: #a09880;
+    }
+
+    .btn-outline {
+      border: 1px solid white;
+      color: white;
+      background: transparent;
+      padding: 14px 32px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #12100e;
+      color: #6a6050;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .footer-logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 20px;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #a09080;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom {
+      background: #0d0b09;
+      text-align: center;
+      padding: 16px;
+      font-size: 12px;
+      color: #4a4038;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
 <nav>
-<a href="#" class="logo">KURA <span>MARKET</span></a>
 
-<ul class="nav-links">
-<li><a href="#">商品一覧</a></li>
-<li><a href="#">特集</a></li>
-<li><a href="#">ランキング</a></li>
-<li><a href="#">ブランド紹介</a></li>
-<li><a href="#">レビュー</a></li>
-</ul>
+  <a href="#" class="logo">
+    KURA <span>MARKET</span>
+  </a>
 
-<button class="cart-btn">
-🛒 カート(1)
-</button>
+  <ul class="nav-links">
+    <li><a href="#">食品・飲料</a></li>
+    <li><a href="#">生活雑貨</a></li>
+    <li><a href="#">ファッション</a></li>
+    <li><a href="#">電子機器</a></li>
+    <li><a href="#">セール</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button id="cart-btn">
+      🛒 カート (0)
+    </button>
+  </div>
 
 </nav>
-</header>
 
-<!-- TOP -->
+<div class="hero">
 
-<section class="hero">
+  <div class="hero-text">
 
-<div class="hero-left">
+    <div class="hero-tag">
+      2026年 春の新作コレクション
+    </div>
 
-<div class="hero-tag">
-2026 SPRING COLLECTION
-</div>
+    <h1 class="hero-title">
+      暮らしに<br>
+      上質を。
+    </h1>
 
-<h1>
-暮らしに、<br>
-本物を。
-</h1>
+    <p class="hero-sub">
+      厳選した日本各地の逸品を、あなたの元へ。
+      食・住・衣をテーマにしたセレクトショップ。
+    </p>
 
-<p>
-全国の職人・生産者と提携し、
-長く愛される逸品を厳選。
-KURA MARKET は、
-日本の“良いもの”を届けるセレクトショップです。
-</p>
+    <a href="product-matcha.html" class="btn-primary">
+      商品を見る
+    </a>
 
-<button>
-おすすめを見る
-</button>
+  </div>
 
-</div>
-
-<div class="hero-right">
-🏮
-</div>
-
-</section>
-
-<!-- 商品一覧 -->
-
-<section class="section">
-
-<h2 class="section-title">
-おすすめ商品
-</h2>
-
-<p class="section-sub">
-今週の人気アイテム
-</p>
-
-<div class="products">
-
-<div class="card">
-<div class="card-img">🍵</div>
-
-<div class="card-body">
-
-<div class="tag">京都宇治産</div>
-
-<div class="product-name">
-宇治抹茶 プレミアム缶
-</div>
-
-<div class="price">
-¥3,280
-</div>
-
-<button>
-商品詳細を見る
-</button>
-
-</div>
-</div>
-
-<div class="card">
-<div class="card-img">🪴</div>
-
-<div class="card-body">
-
-<div class="tag">職人手作り</div>
-
-<div class="product-name">
-信楽焼 花瓶
-</div>
-
-<div class="price">
-¥12,800
-</div>
-
-<button>
-商品詳細を見る
-</button>
-
-</div>
-</div>
-
-<div class="card">
-<div class="card-img">🧴</div>
-
-<div class="card-body">
-
-<div class="tag">北海道産</div>
-
-<div class="product-name">
-馬油クリーム
-</div>
-
-<div class="price">
-¥2,180
-</div>
-
-<button>
-商品詳細を見る
-</button>
-
-</div>
-</div>
-
-<div class="card">
-<div class="card-img">📚</div>
-
-<div class="card-body">
-
-<div class="tag">限定品</div>
-
-<div class="product-name">
-和紙ノートセット
-</div>
-
-<div class="price">
-¥1,980
-</div>
-
-<button>
-商品詳細を見る
-</button>
-
-</div>
-</div>
+  <div class="hero-image">
+    <span>🏮</span>
+  </div>
 
 </div>
 
-</section>
+<div class="section">
 
-<!-- 特集 -->
+  <h2 class="section-title">
+    おすすめ商品
+  </h2>
 
-<section class="section">
+  <p class="section-sub">
+    今週の人気アイテム
+  </p>
 
-<div class="feature">
+  <div class="products-grid">
 
-<div class="feature-image">
-🍃
-</div>
+    <div class="product-card">
 
-<div class="feature-content">
+      <div class="product-img">
+        🍵
+      </div>
 
-<h2>
-京都の老舗茶舗と
-共同開発
-</h2>
+      <div class="product-body">
 
-<p>
-創業100年を超える京都宇治の茶舗と共同で開発した
-プレミアム抹茶シリーズ。
-石臼挽きならではの香りと深い旨味を楽しめます。
-</p>
+        <div class="product-tag">
+          京都産
+        </div>
 
-<button class="cart-btn">
-特集を見る
-</button>
+        <div class="product-name">
+          宇治抹茶 プレミアム缶 100g
+        </div>
 
-</div>
+        <div class="product-rating">
+          <span>★★★★★</span> (128)
+        </div>
 
-</div>
+        <div class="product-price">
+          ¥3,280
+        </div>
 
-</section>
+        <div class="product-original">
+          ¥4,500
+        </div>
 
-<!-- ランキング -->
+        <a href="product-matcha.html">
 
-<section class="section">
+          <button class="btn-add">
+            商品詳細を見る
+          </button>
 
-<h2 class="section-title">
-人気ランキング
-</h2>
+        </a>
 
-<p class="section-sub">
-今月もっとも選ばれている商品
-</p>
+      </div>
 
-<div class="ranking-list">
+    </div>
 
-<div class="rank-item">
-<div class="rank-number">1</div>
-<div>
-<h3>宇治抹茶 プレミアム缶</h3>
-<p>レビュー 128件</p>
-</div>
-</div>
+    <div class="product-card">
 
-<div class="rank-item">
-<div class="rank-number">2</div>
-<div>
-<h3>信楽焼 花瓶</h3>
-<p>レビュー 64件</p>
-</div>
-</div>
+      <div class="product-img">
+        🪴
+      </div>
 
-<div class="rank-item">
-<div class="rank-number">3</div>
-<div>
-<h3>和紙ノートセット</h3>
-<p>レビュー 87件</p>
-</div>
-</div>
+      <div class="product-body">
 
-</div>
+        <div class="product-tag">
+          職人手作り
+        </div>
 
-</section>
+        <div class="product-name">
+          信楽焼 花瓶 中型 グレー
+        </div>
 
-<!-- ブランド紹介 -->
+        <div class="product-rating">
+          <span>★★★★☆</span> (64)
+        </div>
 
-<section class="section">
+        <div class="product-price">
+          ¥12,800
+        </div>
 
-<div class="brand-box">
+        <div class="product-original">
+          ¥15,000
+        </div>
 
-<h2>
-KURA MARKETについて
-</h2>
+        <a href="product-vase.html">
 
-<p>
-KURA MARKET は、
-日本各地に根付く伝統・職人技・素材の魅力を
-現代の暮らしへ届けるセレクトショップです。
+          <button class="btn-add">
+            商品詳細を見る
+          </button>
 
-地域の生産者と直接提携し、
-大量生産では表現できない
-“本物の価値”を大切にしています。
-</p>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
-</section>
+<div class="promo-banner">
 
-<!-- レビュー -->
+  <div>
 
-<section class="section">
+    <h2>
+      会員登録で10%OFF
+    </h2>
 
-<h2 class="section-title">
-お客様レビュー
-</h2>
+    <p>
+      初回購入クーポンをプレゼント中
+    </p>
 
-<p class="section-sub">
-購入者の声
-</p>
+  </div>
 
-<div class="reviews">
-
-<div class="review">
-<strong>東京都 / 30代女性</strong>
-<p>
-香りが非常によく、
-来客時にも喜ばれました。
-</p>
-</div>
-
-<div class="review">
-<strong>大阪府 / 40代男性</strong>
-<p>
-梱包も丁寧で、
-ギフトにも最適でした。
-</p>
-</div>
-
-<div class="review">
-<strong>福岡県 / 20代女性</strong>
-<p>
-写真以上に高級感があり、
-満足しています。
-</p>
-</div>
+  <button class="btn-outline">
+    無料で会員登録する
+  </button>
 
 </div>
-
-</section>
-
-<!-- 商品詳細 -->
-
-<section class="section">
-
-<div class="product-detail">
-
-<div class="detail-image">
-🍵
-</div>
-
-<div class="detail-info">
-
-<div class="tag">
-京都宇治産
-</div>
-
-<h1>
-宇治抹茶 プレミアム缶
-</h1>
-
-<div class="detail-price">
-¥3,280
-</div>
-
-<p>
-京都宇治の茶舗と共同開発した
-プレミアム抹茶。
-石臼挽きによる濃厚な香りと
-まろやかな旨味が特徴です。
-</p>
-
-<br>
-
-<p>
-配送予定：
-ご注文から1〜2営業日以内に発送
-</p>
-
-<button>
-カートに追加
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- カート -->
-
-<section class="section">
-
-<h2 class="section-title">
-ショッピングカート
-</h2>
-
-<div class="rank-item">
-
-<div style="font-size:64px;">
-🍵
-</div>
-
-<div style="flex:1;">
-
-<h3>
-宇治抹茶 プレミアム缶
-</h3>
-
-<p>
-数量: 1
-</p>
-
-</div>
-
-<div class="price">
-¥3,280
-</div>
-
-</div>
-
-</section>
-
-<!-- 配送先 -->
-
-<section class="section checkout">
-
-<h2 class="section-title">
-配送先情報
-</h2>
-
-<form>
-
-<input type="text" placeholder="氏名">
-
-<input type="text" placeholder="郵便番号">
-
-<input type="text" placeholder="住所">
-
-<input type="tel" placeholder="電話番号">
-
-<button>
-お支払いへ進む
-</button>
-
-</form>
-
-</section>
-
-<!-- 決済 -->
-
-<section class="section checkout">
-
-<h2 class="section-title">
-お支払い情報
-</h2>
-
-<form>
-
-<input type="text" placeholder="カード名義">
-
-<input type="text" placeholder="0000 0000 0000 0000">
-
-<input type="text" placeholder="MM / YY">
-
-<input type="text" placeholder="CVV">
-
-<button>
-注文を確定する
-</button>
-
-</form>
-
-</section>
-
-<!-- 完了 -->
-
-<section class="section" style="text-align:center;">
-
-<h2 class="section-title">
-ご注文ありがとうございます
-</h2>
-
-<p class="section-sub">
-ご注文番号 #KM20260018
-</p>
-
-<div style="font-size:120px; margin:30px 0;">
-🎁
-</div>
-
-<p>
-発送完了後、
-登録メールアドレスへ追跡番号をお送りします。
-</p>
-
-</section>
 
 <footer>
 
-<div class="footer-inner">
+  <div>
 
-<div>
+    <div class="footer-logo">
+      KURA MARKET
+    </div>
 
-<div class="footer-logo">
-KURA MARKET
-</div>
+    <p class="footer-desc">
+      日本各地の職人・生産者と直接つながり、
+      本物の品質をお届けするセレクトショップ。
+    </p>
 
-<p>
-日本各地の職人・生産者と直接つながり、
-本物の品質を届けるセレクトショップ。
-</p>
+  </div>
 
-</div>
+  <div class="footer-col">
 
-<div class="footer-col">
+    <h4>
+      ショップ
+    </h4>
 
-<h4>
-ショップ
-</h4>
+    <ul>
+      <li>新着商品</li>
+      <li>ランキング</li>
+      <li>セール</li>
+      <li>ギフト</li>
+    </ul>
 
-<ul>
-<li>新着商品</li>
-<li>ランキング</li>
-<li>セール</li>
-<li>ギフト</li>
-</ul>
+  </div>
 
-</div>
+  <div class="footer-col">
 
-<div class="footer-col">
+    <h4>
+      サポート
+    </h4>
 
-<h4>
-サポート
-</h4>
+    <ul>
+      <li>よくある質問</li>
+      <li>配送について</li>
+      <li>返品・交換</li>
+      <li>お問い合わせ</li>
+    </ul>
 
-<ul>
-<li>FAQ</li>
-<li>配送について</li>
-<li>返品・交換</li>
-<li>お問い合わせ</li>
-</ul>
+  </div>
 
-</div>
+  <div class="footer-col">
 
-<div class="footer-col">
+    <h4>
+      会社情報
+    </h4>
 
-<h4>
-会社情報
-</h4>
+    <ul>
+      <li>会社概要</li>
+      <li>採用情報</li>
+      <li>プライバシー</li>
+      <li>利用規約</li>
+    </ul>
 
-<ul>
-<li>会社概要</li>
-<li>採用情報</li>
-<li>利用規約</li>
-<li>プライバシーポリシー</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-© 2026 KURA MARKET All Rights Reserved.
-</div>
+  </div>
 
 </footer>
+
+<div class="footer-bottom">
+  © 2026 KURA MARKET All Rights Reserved.
+</div>
+
+<script>
+
+let cartCount = 0;
+
+function addToCart() {
+
+  cartCount++;
+
+  document.getElementById("cart-btn").innerText =
+    `🛒 カート (${cartCount})`;
+
+}
+
+</script>
 
 </body>
 </html>
