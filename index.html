@@ -1,681 +1,1080 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>KURA MARKET</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KURA MARKET</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --dark: #1a1410;
+      --accent: #c84b2f;
+      --muted: #8a8070;
+      --card: #fffdf8;
+      --border: #e0d8c8;
+      --success: #3a7d44;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--dark); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
 
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    /* ── BANNER ── */
+    .top-banner {
+      background: var(--dark);
+      color: #c8b898;
+      text-align: center;
+      padding: 9px 16px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+    }
 
-<style>
-:root{
-  --bg:#f5f0e8;
-  --dark:#1a1410;
-  --accent:#c84b2f;
-  --muted:#8a8070;
-  --card:#fffdf8;
-  --border:#e0d8c8;
-}
+    /* ── NAV ── */
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 300;
+    }
+    .logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 13.5px; font-weight: 400; transition: color .2s; }
+    .nav-links a:hover { color: var(--dark); }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+    /* Search bar */
+    .nav-search {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: 7px 14px;
+      gap: 8px;
+      flex: 0 0 220px;
+    }
+    .nav-search input {
+      border: none;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--dark);
+      outline: none;
+      width: 100%;
+    }
+    .nav-search input::placeholder { color: var(--muted); }
+    .nav-search svg { color: var(--muted); flex-shrink: 0; }
 
-body{
-  background:var(--bg);
-  color:var(--dark);
-  font-family:'DM Sans',sans-serif;
-}
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      color: var(--dark);
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-icon-btn:hover { color: var(--accent); }
+    .cart-btn {
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background .2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+    .cart-btn:hover { background: var(--accent); }
+    .cart-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity .2s, transform .2s;
+    }
+    .cart-badge.show {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-/* NAV */
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+    .hero-text {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .hero-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 52px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 360px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+      transition: opacity .2s;
+      text-decoration: none;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .hero-image {
+      background: #e8e0d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 60% 40%, #d4c8b0 0%, #e8e0d0 70%);
+    }
+    .hero-image span { position: relative; z-index: 1; }
 
-nav{
-  background:var(--card);
-  border-bottom:1px solid var(--border);
-  padding:0 48px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  height:64px;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
+    /* ── SECTION ── */
+    .section { padding: 64px 48px; }
+    .section-title { font-family: 'Shippori Mincho', serif; font-size: 28px; margin-bottom: 8px; }
+    .section-sub { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
 
-.logo{
-  font-family:'Shippori Mincho',serif;
-  font-size:22px;
-  font-weight:700;
-  text-decoration:none;
-  color:var(--dark);
-}
+    /* ── CATEGORIES ── */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .cat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, transform .2s;
+    }
+    .cat-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .cat-icon { font-size: 36px; margin-bottom: 12px; }
+    .cat-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+    .cat-count { font-size: 12px; color: var(--muted); }
 
-.logo span{
-  color:var(--accent);
-}
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow .2s;
+      cursor: pointer;
+      animation: fadeIn .4s ease both;
+      position: relative;
+    }
+    .product-card:nth-child(2) { animation-delay: .05s; }
+    .product-card:nth-child(3) { animation-delay: .1s; }
+    .product-card:nth-child(4) { animation-delay: .15s; }
+    .product-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
 
-.nav-links{
-  display:flex;
-  gap:28px;
-  list-style:none;
-}
+    /* Wishlist button on card */
+    .wish-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.85);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform .2s, background .2s;
+      z-index: 2;
+    }
+    .wish-btn:hover { transform: scale(1.15); }
+    .wish-btn.active { background: #fee; }
 
-.nav-links a{
-  text-decoration:none;
-  color:var(--muted);
-  font-size:14px;
-}
+    .product-img {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      background: #f0ebe0;
+      transition: transform .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card:hover .product-img { transform: scale(1.03); }
 
-.nav-right button{
-  background:var(--dark);
-  color:#fff;
-  border:none;
-  padding:10px 20px;
-  cursor:pointer;
-}
+    .product-body { padding: 16px; }
+    .product-tag { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .product-name { font-size: 15px; font-weight: 500; margin-bottom: 8px; line-height: 1.4; }
+    .product-rating { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .product-rating span { color: #e8a020; }
+    .product-price { font-size: 18px; font-weight: 500; color: var(--accent); margin-bottom: 4px; }
+    .product-original { font-size: 12px; color: var(--muted); text-decoration: line-through; margin-bottom: 12px; }
 
-/* HERO */
+    .btn-add {
+      width: 100%;
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      letter-spacing: 0.05em;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-add:hover { background: var(--accent); }
+    .btn-add:active { transform: scale(0.97); }
+    .btn-add.added {
+      background: var(--success);
+    }
 
-.hero{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  min-height:500px;
-}
+    /* ── PROMO BANNER ── */
+    .promo-banner {
+      background: var(--dark);
+      color: #fff;
+      padding: 64px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .promo-banner h2 { font-family: 'Shippori Mincho', serif; font-size: 32px; margin-bottom: 8px; }
+    .promo-banner p { color: #a09880; font-size: 15px; }
+    .btn-outline {
+      border: 1px solid #fff;
+      color: #fff;
+      background: transparent;
+      padding: 14px 32px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
 
-.hero-text{
-  padding:80px 64px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
+    /* ── FOOTER ── */
+    footer {
+      background: #12100e;
+      color: #6a6050;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-logo { font-family: 'Shippori Mincho', serif; font-size: 20px; color: #fff; margin-bottom: 12px; }
+    .footer-desc { font-size: 13px; line-height: 1.7; }
+    .footer-col h4 { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: #a09080; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { font-size: 13px; margin-bottom: 8px; cursor: pointer; transition: color .2s; }
+    .footer-col li:hover { color: #fff; }
+    .footer-bottom { background: #0d0b09; text-align: center; padding: 16px; font-size: 12px; color: #4a4038; }
 
-.hero-tag{
-  color:var(--accent);
-  margin-bottom:16px;
-  font-size:12px;
-}
+    /* ── CART DRAWER ── */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      z-index: 400;
+      pointer-events: none;
+      transition: background .3s;
+    }
+    .drawer-overlay.open {
+      background: rgba(0,0,0,0.45);
+      pointer-events: all;
+    }
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 420px;
+      max-width: 100vw;
+      height: 100vh;
+      background: var(--card);
+      z-index: 401;
+      display: flex;
+      flex-direction: column;
+      transition: right .35s cubic-bezier(.4,0,.2,1);
+      box-shadow: -4px 0 32px rgba(0,0,0,0.12);
+    }
+    .cart-drawer.open { right: 0; }
+    .drawer-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .drawer-header h3 { font-family: 'Shippori Mincho', serif; font-size: 20px; }
+    .drawer-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      color: var(--muted);
+      transition: color .2s;
+      line-height: 1;
+    }
+    .drawer-close:hover { color: var(--dark); }
+    .drawer-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 28px;
+    }
+    .drawer-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+    .drawer-empty .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
+    .drawer-empty p { font-size: 14px; line-height: 1.7; }
 
-.hero-title{
-  font-family:'Shippori Mincho',serif;
-  font-size:54px;
-  margin-bottom:20px;
-}
+    .cart-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      animation: slideIn .25s ease;
+    }
+    .cart-item-img {
+      width: 72px;
+      height: 72px;
+      background: #f0ebe0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
+    .cart-item-name { font-size: 14px; font-weight: 500; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cart-item-price { font-size: 15px; color: var(--accent); font-weight: 500; }
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 8px;
+    }
+    .qty-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .15s;
+      color: var(--dark);
+    }
+    .qty-btn:hover { background: var(--border); }
+    .qty-display {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      width: 36px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .remove-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 18px;
+      margin-left: 10px;
+      line-height: 1;
+      transition: color .2s;
+    }
+    .remove-btn:hover { color: var(--accent); }
 
-.hero-sub{
-  color:var(--muted);
-  line-height:1.7;
-  margin-bottom:28px;
-}
+    .drawer-footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 28px;
+      flex-shrink: 0;
+    }
+    .subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .total-row span:last-child { color: var(--accent); }
+    .checkout-btn {
+      width: 100%;
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background .2s;
+      font-weight: 500;
+    }
+    .checkout-btn:hover { background: var(--accent); }
 
-.btn-primary{
-  background:var(--accent);
-  color:#fff;
-  border:none;
-  padding:14px 28px;
-  cursor:pointer;
-  text-decoration:none;
-}
+    /* ── PRODUCT DETAIL MODAL ── */
+    .product-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .product-modal-overlay.active { display: flex; }
+    .product-modal {
+      background: var(--card);
+      max-width: 640px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      animation: popIn .25s ease;
+    }
+    .pm-image {
+      background: #f0ebe0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      min-height: 280px;
+    }
+    .pm-body {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pm-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-modal { position: relative; }
+    .pm-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .pm-name { font-family: 'Shippori Mincho', serif; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
+    .pm-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; flex: 1; }
+    .pm-rating { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .pm-rating span { color: #e8a020; }
+    .pm-price-row { margin-bottom: 20px; }
+    .pm-price { font-size: 24px; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+    .pm-original { font-size: 13px; color: var(--muted); text-decoration: line-through; }
+    .pm-add-btn {
+      width: 100%;
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background .2s;
+      letter-spacing: 0.05em;
+    }
+    .pm-add-btn:hover { background: var(--accent); }
 
-.hero-image{
-  background:#e8e0d0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:120px;
-}
+    /* ── TOAST ── */
+    .toast-container {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .toast {
+      background: var(--dark);
+      color: #fff;
+      padding: 13px 24px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: toastIn .3s ease, toastOut .3s ease 2.2s both;
+      white-space: nowrap;
+    }
+    .toast.success { border-left: 3px solid #6bc67e; }
+    .toast.info { border-left: 3px solid #6ab0c8; }
+    .toast.wish { border-left: 3px solid #e88; }
 
-/* SECTION */
-
-.section{
-  padding:64px 48px;
-}
-
-.section-title{
-  font-family:'Shippori Mincho',serif;
-  font-size:30px;
-  margin-bottom:10px;
-}
-
-.section-sub{
-  color:var(--muted);
-  margin-bottom:36px;
-}
-
-/* PRODUCTS */
-
-.products-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-.product-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  overflow:hidden;
-  transition:.2s;
-}
-
-.product-card:hover{
-  transform:translateY(-4px);
-}
-
-.product-img{
-  height:180px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:64px;
-  background:#f0ebe0;
-}
-
-.product-body{
-  padding:16px;
-}
-
-.product-tag{
-  color:var(--accent);
-  font-size:11px;
-  margin-bottom:8px;
-}
-
-.product-name{
-  font-size:15px;
-  margin-bottom:10px;
-}
-
-.product-price{
-  color:var(--accent);
-  font-size:20px;
-  margin-bottom:14px;
-}
-
-.btn-add,
-.btn-detail{
-  width:100%;
-  border:none;
-  padding:10px;
-  cursor:pointer;
-  margin-top:8px;
-}
-
-.btn-add{
-  background:var(--dark);
-  color:#fff;
-}
-
-.btn-detail{
-  background:#ece5d8;
-}
-
-/* FOOTER */
-
-footer{
-  background:#12100e;
-  color:#6a6050;
-  padding:48px;
-  margin-top:60px;
-}
-
-/* MODAL */
-
-.modal-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  z-index:999;
-  align-items:center;
-  justify-content:center;
-}
-
-.modal-overlay.active{
-  display:flex;
-}
-
-.modal{
-  background:#fff;
-  width:90%;
-  max-width:520px;
-  padding:32px;
-  border-radius:8px;
-}
-
-.modal h2{
-  margin-bottom:20px;
-}
-
-.modal input{
-  width:100%;
-  padding:12px;
-  margin-bottom:12px;
-  border:1px solid #ccc;
-}
-
-.modal button{
-  width:100%;
-  padding:12px;
-  border:none;
-  cursor:pointer;
-}
-
-.close-btn{
-  background:#ddd;
-  margin-top:12px;
-}
-
-.buy-btn{
-  background:var(--accent);
-  color:#fff;
-}
-
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
-  border-bottom:1px solid #eee;
-  padding-bottom:10px;
-}
-
-.remove-btn{
-  background:#b43b22;
-  color:#fff;
-  border:none;
-  padding:6px 10px;
-  cursor:pointer;
-}
-</style>
+    /* ── KEYFRAMES ── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(12px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.94); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(8px); }
+    }
+    @keyframes badgePop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.4); }
+      100% { transform: scale(1); }
+    }
+    .badge-pop { animation: badgePop .25s ease; }
+  </style>
 </head>
-
 <body>
 
+<!-- TOP BANNER -->
+<div class="top-banner">🎁 送料無料キャンペーン実施中 ─ ¥5,000以上のご購入で全国送料無料</div>
+
+<!-- NAV -->
 <nav>
   <a href="#" class="logo">KURA <span>MARKET</span></a>
-
   <ul class="nav-links">
-    <li><a href="#">商品一覧</a></li>
-    <li><a href="#">特集</a></li>
-    <li><a href="#">ランキング</a></li>
-    <li><a href="#">ブランド紹介</a></li>
-    <li><a href="#">レビュー</a></li>
+   
   </ul>
-
   <div class="nav-right">
-    <button onclick="openCart()">
-      🛒 カート (<span id="cart-count">0</span>)
+    <div class="nav-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="商品を検索..." id="searchInput" oninput="filterProducts()">
+    </div>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 カート
+      <span class="cart-badge" id="cartBadge">0</span>
     </button>
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-text">
-    <div class="hero-tag">2026 SPRING COLLECTION</div>
-
-    <h1 class="hero-title">
-      暮らしに<br>上質を。
-    </h1>
-
-    <p class="hero-sub">
-      日本各地のこだわりの商品を厳選した
-      セレクトショップ。
-    </p>
-
-    <a href="#" class="btn-primary">
-      商品を見る
-    </a>
+    <div class="hero-tag">2026年 春の新作コレクション</div>
+    <h1 class="hero-title">暮らしに<br>上質を。</h1>
+    <p class="hero-sub">厳選した日本各地の逸品を、あなたの元へ。食・住・衣をテーマにしたセレクトショップ。</p>
+    <a href="#products" class="btn-primary">今すぐ購入する</a>
   </div>
-
-  <div class="hero-image">
-    🏮
-  </div>
+  <div class="hero-image"><span>🏮</span></div>
 </div>
 
+<!-- CATEGORIES -->
 <div class="section">
+  <h2 class="section-title">カテゴリーから探す</h2>
+  <p class="section-sub">お気に入りのジャンルをお選びください</p>
+  <div class="categories">
+    <div class="cat-card" onclick="filterByCategory('food')">
+      <div class="cat-icon">🍱</div>
+      <div class="cat-name">食品・グルメ</div>
+      <div class="cat-count">1,234点</div>
+    </div>
+    <div class="cat-card" onclick="filterByCategory('interior')">
+      <div class="cat-icon">🏠</div>
+      <div class="cat-name">インテリア</div>
+      <div class="cat-count">856点</div>
+    </div>
+    <div class="cat-card" onclick="filterByCategory('beauty')">
+      <div class="cat-icon">🧴</div>
+      <div class="cat-name">ビューティー</div>
+      <div class="cat-count">412点</div>
+    </div>
+    <div class="cat-card" onclick="filterByCategory('stationery')">
+      <div class="cat-icon">📖</div>
+      <div class="cat-name">文具・紙製品</div>
+      <div class="cat-count">543点</div>
+    </div>
+  </div>
+</div>
 
+<!-- PRODUCTS -->
+<div class="section" style="padding-top: 0;" id="products">
   <h2 class="section-title">おすすめ商品</h2>
-  <p class="section-sub">人気アイテムをチェック</p>
-
-  <div class="products-grid">
-
-    <!-- 1 -->
-    <div class="product-card">
-      <div class="product-img">🍵</div>
-
-      <div class="product-body">
-        <div class="product-tag">京都産</div>
-
-        <div class="product-name">
-          宇治抹茶 プレミアム缶
-        </div>
-
-        <div class="product-price">
-          ¥3,280
-        </div>
-
-        <button class="btn-detail"
-          onclick="showProductDetail(
-          '宇治抹茶 プレミアム缶',
-          '京都宇治産の高級抹茶。香り高く濃厚な味わい。',
-          '¥3,280'
-        )">
-          商品詳細を見る
-        </button>
-
-        <button class="btn-add"
-          onclick="addToCart('宇治抹茶 プレミアム缶',3280)">
-          カートに追加
-        </button>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="product-card">
-      <div class="product-img">🪴</div>
-
-      <div class="product-body">
-        <div class="product-tag">職人手作り</div>
-
-        <div class="product-name">
-          信楽焼 花瓶
-        </div>
-
-        <div class="product-price">
-          ¥12,800
-        </div>
-
-        <button class="btn-detail"
-          onclick="showProductDetail(
-          '信楽焼 花瓶',
-          '伝統技法で作られた和モダンな花瓶。',
-          '¥12,800'
-        )">
-          商品詳細を見る
-        </button>
-
-        <button class="btn-add"
-          onclick="addToCart('信楽焼 花瓶',12800)">
-          カートに追加
-        </button>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="product-card">
-      <div class="product-img">🧴</div>
-
-      <div class="product-body">
-        <div class="product-tag">無添加</div>
-
-        <div class="product-name">
-          馬油クリーム
-        </div>
-
-        <div class="product-price">
-          ¥2,180
-        </div>
-
-        <button class="btn-detail"
-          onclick="showProductDetail(
-          '馬油クリーム',
-          '北海道産馬油を使用した保湿クリーム。',
-          '¥2,180'
-        )">
-          商品詳細を見る
-        </button>
-
-        <button class="btn-add"
-          onclick="addToCart('馬油クリーム',2180)">
-          カートに追加
-        </button>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="product-card">
-      <div class="product-img">📚</div>
-
-      <div class="product-body">
-        <div class="product-tag">限定品</div>
-
-        <div class="product-name">
-          和紙ノート
-        </div>
-
-        <div class="product-price">
-          ¥1,980
-        </div>
-
-        <button class="btn-detail"
-          onclick="showProductDetail(
-          '和紙ノート',
-          '職人製の和紙を使った高級ノート。',
-          '¥1,980'
-        )">
-          商品詳細を見る
-        </button>
-
-        <button class="btn-add"
-          onclick="addToCart('和紙ノート',1980)">
-          カートに追加
-        </button>
-      </div>
-    </div>
-
+  <p class="section-sub">今週の人気アイテム</p>
+  <div class="products-grid" id="productsGrid">
+    <!-- rendered by JS -->
   </div>
 </div>
 
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  <div>
+    <h2>会員登録で10%OFF</h2>
+    <p>初回購入クーポンをプレゼント中</p>
+  </div>
+  <button class="btn-outline" onclick="showToast('準備中です。もう少しお待ちください。', 'info')">無料で会員登録する</button>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  KURA MARKET
+  <div>
+    <div class="footer-logo">KURA MARKET</div>
+    <p class="footer-desc">日本各地の職人・生産者と直接つながり、<br>本物の品質をお届けするセレクトショップ。</p>
+  </div>
+  <div class="footer-col">
+    <h4>ショップ</h4>
+    <ul>
+      <li>新着商品</li>
+      <li>ランキング</li>
+      <li>セール</li>
+      <li>ギフト</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>サポート</h4>
+    <ul>
+      <li>よくある質問</li>
+      <li>配送について</li>
+      <li>返品・交換</li>
+      <li>お問い合わせ</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>会社情報</h4>
+    <ul>
+      <li>会社概要</li>
+      <li>採用情報</li>
+      <li>プライバシー</li>
+      <li>利用規約</li>
+    </ul>
+  </div>
 </footer>
+<div class="footer-bottom">© 2026 KURA MARKET. All rights reserved.</div>
 
-<!-- 商品詳細モーダル -->
-<div class="modal-overlay" id="detailModal">
-  <div class="modal">
-    <h2 id="detailTitle"></h2>
-
-    <p id="detailText" style="margin-bottom:16px;"></p>
-
-    <div id="detailPrice"
-      style="font-size:22px;color:#c84b2f;margin-bottom:20px;">
+<!-- CART DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-header">
+    <h3>カート</h3>
+    <button class="drawer-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-footer" id="drawerFooter" style="display:none">
+    <div class="subtotal-row">
+      <span>小計</span>
+      <span id="subtotalVal">¥0</span>
     </div>
-
-    <button class="close-btn"
-      onclick="closeModal('detailModal')">
-      閉じる
-    </button>
+    <div class="subtotal-row">
+      <span>送料</span>
+      <span id="shippingVal">¥550</span>
+    </div>
+    <div class="total-row">
+      <span>合計</span>
+      <span id="totalVal">¥550</span>
+    </div>
+    <button class="checkout-btn" onclick="showToast('決済機能は現在準備中です', 'info')">レジへ進む →</button>
   </div>
 </div>
 
-<!-- カート -->
-<div class="modal-overlay" id="cartModal">
-  <div class="modal">
-
-    <h2>カート</h2>
-
-    <div id="cart-items"></div>
-
-    <button class="buy-btn"
-      onclick="showCustomerForm()">
-      購入手続きへ
-    </button>
-
-    <button class="close-btn"
-      onclick="closeModal('cartModal')">
-      閉じる
-    </button>
-
+<!-- PRODUCT DETAIL MODAL -->
+<div class="product-modal-overlay" id="productModal" onclick="closeProductModal(event)">
+  <div class="product-modal" id="productModalInner">
+    <button class="pm-close" onclick="closeProductModalDirect()">×</button>
+    <div class="pm-image" id="pmImage"></div>
+    <div class="pm-body">
+      <div>
+        <div class="pm-tag" id="pmTag"></div>
+        <div class="pm-name" id="pmName"></div>
+        <div class="pm-desc" id="pmDesc"></div>
+        <div class="pm-rating" id="pmRating"></div>
+      </div>
+      <div>
+        <div class="pm-price-row">
+          <div class="pm-price" id="pmPrice"></div>
+          <div class="pm-original" id="pmOriginal"></div>
+        </div>
+        <button class="pm-add-btn" id="pmAddBtn">カートに追加</button>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- 個人情報 -->
-<div class="modal-overlay" id="customerModal">
-  <div class="modal">
-
-    <h2>配送先情報</h2>
-
-    <input type="text" placeholder="氏名">
-
-    <input type="text" placeholder="住所">
-
-    <input type="text" placeholder="電話番号">
-
-    <button class="buy-btn"
-      onclick="showPaymentForm()">
-      決済情報入力へ
-    </button>
-
-    <button class="close-btn"
-      onclick="closeModal('customerModal')">
-      閉じる
-    </button>
-
-  </div>
-</div>
-
-<!-- 決済 -->
-<div class="modal-overlay" id="paymentModal">
-  <div class="modal">
-
-    <h2>決済情報</h2>
-
-    <input type="text" placeholder="カード名義">
-
-    <input type="text" placeholder="0000 0000 0000 0000">
-
-    <input type="text" placeholder="MM/YY">
-
-    <input type="text" placeholder="CVV">
-
-    <button class="buy-btn"
-      onclick="completePurchase()">
-      購入を完了
-    </button>
-
-    <button class="close-btn"
-      onclick="closeModal('paymentModal')">
-      閉じる
-    </button>
-
-  </div>
-</div>
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
 
 <script>
+  // ── DATA ──────────────────────────────────────────────────────────
+  const products = [
+    {
+      id: 1, emoji: '🍵', tag: '京都産', name: '宇治抹茶 プレミアム缶 100g',
+      rating: '★★★★★', reviews: 128, price: 3280, original: 4500,
+      category: 'food',
+      desc: '京都・宇治の茶師が丹精込めて作った一番摘み抹茶。鮮やかな緑と豊かな香りが特徴です。'
+    },
+    {
+      id: 2, emoji: '🪴', tag: '職人手作り', name: '信楽焼 花瓶 中型 グレー',
+      rating: '★★★★☆', reviews: 64, price: 12800, original: 15000,
+      category: 'interior',
+      desc: '滋賀・信楽の窯元が一点一点手作りした花瓶。自然釉の風合いが空間を引き締めます。'
+    },
+    {
+      id: 3, emoji: '🧴', tag: '無添加', name: '北海道産 馬油クリーム 50ml',
+      rating: '★★★★★', reviews: 302, price: 2180, original: 2800,
+      category: 'beauty',
+      desc: '北海道の牧場から生まれた馬油を100%使用。無添加処方で敏感肌にも安心してお使いいただけます。'
+    },
+    {
+      id: 4, emoji: '📚', tag: '限定品', name: '和紙ノート 3冊セット A5',
+      rating: '★★★★☆', reviews: 87, price: 1980, original: 2400,
+      category: 'stationery',
+      desc: '越前和紙を使った風合い豊かなノート。万年筆ともインク滲みしにくい特別な紙質です。'
+    },
+    {
+      id: 5, emoji: '🍶', tag: '新潟産', name: '純米大吟醸 720ml',
+      rating: '★★★★★', reviews: 215, price: 4980, original: 5800,
+      category: 'food',
+      desc: '新潟・越後の蔵元が醸す、透き通るような香りと淡麗な味わいの純米大吟醸酒。'
+    },
+    {
+      id: 6, emoji: '🕯️', tag: 'アロマ', name: '京都 お香セット 30本入',
+      rating: '★★★★☆', reviews: 143, price: 1680, original: 2000,
+      category: 'interior',
+      desc: '京都の老舗香舗が選び抜いた天然原料のみ使用。自然で上品な香りが空間を満たします。'
+    },
+    {
+      id: 7, emoji: '🍫', tag: '有機栽培', name: 'オーガニックカカオ チョコ 5種',
+      rating: '★★★★★', reviews: 189, price: 2480, original: 3000,
+      category: 'food',
+      desc: '農薬不使用のカカオを使用したクラフトチョコレート。各産地の風味の違いをお楽しみください。'
+    },
+    {
+      id: 8, emoji: '✏️', tag: '職人製', name: '黒柿 木軸ボールペン',
+      rating: '★★★★☆', reviews: 56, price: 8800, original: 10000,
+      category: 'stationery',
+      desc: '希少な黒柿材を職人が削り出した一本。手に馴染む重さと美しい木目が魅力の逸品です。'
+    },
+  ];
 
-let cart = [];
+  // ── STATE ─────────────────────────────────────────────────────────
+  let cart = []; // { id, qty }
+  let wishlist = new Set();
+  let currentFilter = 'all';
 
-function showProductDetail(title, text, price){
-  document.getElementById('detailTitle').innerText = title;
-  document.getElementById('detailText').innerText = text;
-  document.getElementById('detailPrice').innerText = price;
-
-  document.getElementById('detailModal')
-    .classList.add('active');
-}
-
-function closeModal(id){
-  document.getElementById(id)
-    .classList.remove('active');
-}
-
-function addToCart(name, price){
-
-  cart.push({
-    name:name,
-    price:price
-  });
-
-  updateCart();
-}
-
-function updateCart(){
-
-  document.getElementById('cart-count')
-    .innerText = cart.length;
-
-  const cartItems =
-    document.getElementById('cart-items');
-
-  cartItems.innerHTML = '';
-
-  if(cart.length === 0){
-    cartItems.innerHTML = '<p>カートは空です。</p>';
-    return;
+  // ── RENDER PRODUCTS ───────────────────────────────────────────────
+  function renderProducts(list) {
+    const grid = document.getElementById('productsGrid');
+    if (list.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--muted);font-size:15px;">商品が見つかりませんでした</div>`;
+      return;
+    }
+    grid.innerHTML = list.map((p, i) => `
+      <div class="product-card" style="animation-delay:${i*0.05}s" onclick="openProductModal(${p.id})">
+        <button class="wish-btn ${wishlist.has(p.id)?'active':''}" onclick="toggleWish(event,${p.id})">${wishlist.has(p.id)?'❤️':'🤍'}</button>
+        <div class="product-img">${p.emoji}</div>
+        <div class="product-body">
+          <div class="product-tag">${p.tag}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-rating"><span>${p.rating}</span> (${p.reviews})</div>
+          <div class="product-price">¥${p.price.toLocaleString()}</div>
+          <div class="product-original">¥${p.original.toLocaleString()}</div>
+          <button class="btn-add" id="addBtn${p.id}" onclick="addToCart(event,${p.id})">カートに追加</button>
+        </div>
+      </div>
+    `).join('');
   }
 
-  cart.forEach((item,index)=>{
+  function filterProducts() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    let list = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
+    if (q) list = list.filter(p => p.name.toLowerCase().includes(q) || p.tag.toLowerCase().includes(q));
+    renderProducts(list);
+  }
 
-    cartItems.innerHTML += `
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong><br>
-          ¥${item.price.toLocaleString()}
-        </div>
+  function filterByCategory(cat) {
+    currentFilter = currentFilter === cat ? 'all' : cat;
+    document.getElementById('searchInput').value = '';
+    filterProducts();
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-        <button class="remove-btn"
-          onclick="removeFromCart(${index})">
-          削除
-        </button>
-      </div>
-    `;
-  });
-}
+  // ── CART ──────────────────────────────────────────────────────────
+  function addToCart(event, id) {
+    event.stopPropagation();
+    const existing = cart.find(i => i.id === id);
+    if (existing) existing.qty++;
+    else cart.push({ id, qty: 1 });
 
-function removeFromCart(index){
-  cart.splice(index,1);
-  updateCart();
-}
+    updateCartUI();
 
-function openCart(){
-
-  updateCart();
-
-  document.getElementById('cartModal')
-    .classList.add('active');
-}
-
-function showCustomerForm(){
-
-  closeModal('cartModal');
-
-  document.getElementById('customerModal')
-    .classList.add('active');
-}
-
-function showPaymentForm(){
-
-  closeModal('customerModal');
-
-  document.getElementById('paymentModal')
-    .classList.add('active');
-}
-
-function completePurchase(){
-
-  alert('購入が完了しました。');
-
-  cart = [];
-
-  updateCart();
-
-  closeModal('paymentModal');
-}
-
-document.querySelectorAll('.modal-overlay')
-.forEach(modal=>{
-
-  modal.addEventListener('click',function(e){
-
-    if(e.target === this){
-      this.classList.remove('active');
+    // Button feedback
+    const btn = document.getElementById('addBtn' + id);
+    if (btn) {
+      btn.textContent = '✓ 追加しました';
+      btn.classList.add('added');
+      setTimeout(() => {
+        btn.textContent = 'カートに追加';
+        btn.classList.remove('added');
+      }, 1500);
     }
 
-  });
+    const product = products.find(p => p.id === id);
+    showToast(`${product.emoji} ${product.name} をカートに追加しました`, 'success');
+  }
 
-});
+  function removeFromCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    updateCartUI();
+    renderDrawer();
+  }
 
+  function changeQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) { removeFromCart(id); return; }
+    updateCartUI();
+    renderDrawer();
+  }
+
+  function updateCartUI() {
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    const badge = document.getElementById('cartBadge');
+    badge.textContent = total;
+    if (total > 0) {
+      badge.classList.add('show');
+      badge.classList.remove('badge-pop');
+      void badge.offsetWidth;
+      badge.classList.add('badge-pop');
+    } else {
+      badge.classList.remove('show');
+    }
+  }
+
+  function openCart() {
+    renderDrawer();
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('drawerOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('drawerOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderDrawer() {
+    const el = document.getElementById('drawerItems');
+    const footer = document.getElementById('drawerFooter');
+
+    if (cart.length === 0) {
+      el.innerHTML = `
+        <div class="drawer-empty">
+          <div class="empty-icon">🛒</div>
+          <p>カートに商品がありません。<br>気になる商品をカートに追加してみましょう。</p>
+        </div>`;
+      footer.style.display = 'none';
+      return;
+    }
+
+    el.innerHTML = cart.map(item => {
+      const p = products.find(pr => pr.id === item.id);
+      return `
+        <div class="cart-item">
+          <div class="cart-item-img">${p.emoji}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-tag">${p.tag}</div>
+            <div class="cart-item-name">${p.name}</div>
+            <div class="cart-item-price">¥${(p.price * item.qty).toLocaleString()}</div>
+            <div class="cart-item-controls">
+              <button class="qty-btn" onclick="changeQty(${p.id}, -1)">−</button>
+              <div class="qty-display">${item.qty}</div>
+              <button class="qty-btn" onclick="changeQty(${p.id}, 1)">＋</button>
+              <button class="remove-btn" onclick="removeFromCart(${p.id})">🗑</button>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+
+    const subtotal = cart.reduce((s, i) => {
+      const p = products.find(pr => pr.id === i.id);
+      return s + p.price * i.qty;
+    }, 0);
+    const shipping = subtotal >= 5000 ? 0 : 550;
+    const total = subtotal + shipping;
+
+    document.getElementById('subtotalVal').textContent = '¥' + subtotal.toLocaleString();
+    document.getElementById('shippingVal').textContent = shipping === 0 ? '無料' : '¥' + shipping.toLocaleString();
+    document.getElementById('totalVal').textContent = '¥' + total.toLocaleString();
+    footer.style.display = 'block';
+  }
+
+  // ── WISHLIST ──────────────────────────────────────────────────────
+  function toggleWish(event, id) {
+    event.stopPropagation();
+    if (wishlist.has(id)) {
+      wishlist.delete(id);
+      showToast('お気に入りから削除しました', 'info');
+    } else {
+      wishlist.add(id);
+      showToast('❤️ お気に入りに追加しました', 'wish');
+    }
+    filterProducts();
+  }
+
+  // ── PRODUCT MODAL ─────────────────────────────────────────────────
+  let modalProductId = null;
+
+  function openProductModal(id) {
+    const p = products.find(pr => pr.id === id);
+    modalProductId = id;
+    document.getElementById('pmImage').textContent = p.emoji;
+    document.getElementById('pmTag').textContent = p.tag;
+    document.getElementById('pmName').textContent = p.name;
+    document.getElementById('pmDesc').textContent = p.desc;
+    document.getElementById('pmRating').innerHTML = `<span>${p.rating}</span> (${p.reviews}件のレビュー)`;
+    document.getElementById('pmPrice').textContent = '¥' + p.price.toLocaleString();
+    document.getElementById('pmOriginal').textContent = '¥' + p.original.toLocaleString();
+    document.getElementById('pmAddBtn').onclick = () => {
+      addToCartFromModal(id);
+    };
+    document.getElementById('productModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function addToCartFromModal(id) {
+    const existing = cart.find(i => i.id === id);
+    if (existing) existing.qty++;
+    else cart.push({ id, qty: 1 });
+    updateCartUI();
+    const p = products.find(pr => pr.id === id);
+    showToast(`${p.emoji} ${p.name} をカートに追加しました`, 'success');
+    closeProductModalDirect();
+    openCart();
+  }
+
+  function closeProductModal(event) {
+    if (event.target === document.getElementById('productModal')) closeProductModalDirect();
+  }
+  function closeProductModalDirect() {
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // ── TOAST ─────────────────────────────────────────────────────────
+  function showToast(message, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 2600);
+  }
+
+  // ── INIT ──────────────────────────────────────────────────────────
+  renderProducts(products);
 </script>
-
 </body>
 </html>
