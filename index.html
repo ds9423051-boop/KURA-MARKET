@@ -50,13 +50,20 @@
       color: var(--dark);
       text-decoration: none;
       flex-shrink: 0;
+      cursor: pointer;
     }
     .logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--muted); font-size: 13.5px; font-weight: 400; transition: color .2s; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 400;
+      transition: color .2s;
+      cursor: pointer;
+    }
     .nav-links a:hover { color: var(--dark); }
 
-    /* Search bar */
     .nav-search {
       display: flex;
       align-items: center;
@@ -79,20 +86,6 @@
     .nav-search svg { color: var(--muted); flex-shrink: 0; }
 
     .nav-right { display: flex; align-items: center; gap: 12px; }
-    .nav-icon-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      color: var(--dark);
-      transition: color .2s;
-      position: relative;
-    }
-    .nav-icon-btn:hover { color: var(--accent); }
     .cart-btn {
       background: var(--dark);
       color: #fff;
@@ -127,10 +120,7 @@
       transform: scale(0);
       transition: opacity .2s, transform .2s;
     }
-    .cart-badge.show {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .cart-badge.show { opacity: 1; transform: scale(1); }
 
     /* ── HERO ── */
     .hero {
@@ -236,12 +226,8 @@
       animation: fadeIn .4s ease both;
       position: relative;
     }
-    .product-card:nth-child(2) { animation-delay: .05s; }
-    .product-card:nth-child(3) { animation-delay: .1s; }
-    .product-card:nth-child(4) { animation-delay: .15s; }
     .product-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
 
-    /* Wishlist button on card */
     .wish-btn {
       position: absolute;
       top: 10px;
@@ -299,9 +285,7 @@
     }
     .btn-add:hover { background: var(--accent); }
     .btn-add:active { transform: scale(0.97); }
-    .btn-add.added {
-      background: var(--success);
-    }
+    .btn-add.added { background: var(--success); }
 
     /* ── PROMO BANNER ── */
     .promo-banner {
@@ -341,7 +325,12 @@
     .footer-desc { font-size: 13px; line-height: 1.7; }
     .footer-col h4 { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: #a09080; margin-bottom: 16px; }
     .footer-col ul { list-style: none; }
-    .footer-col li { font-size: 13px; margin-bottom: 8px; cursor: pointer; transition: color .2s; }
+    .footer-col li {
+      font-size: 13px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: color .2s;
+    }
     .footer-col li:hover { color: #fff; }
     .footer-bottom { background: #0d0b09; text-align: center; padding: 16px; font-size: 12px; color: #4a4038; }
 
@@ -527,6 +516,7 @@
       grid-template-columns: 1fr 1fr;
       overflow: hidden;
       animation: popIn .25s ease;
+      position: relative;
     }
     .pm-image {
       background: #f0ebe0;
@@ -557,7 +547,6 @@
       align-items: center;
       justify-content: center;
     }
-    .product-modal { position: relative; }
     .pm-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
     .pm-name { font-family: 'Shippori Mincho', serif; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
     .pm-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; flex: 1; }
@@ -579,6 +568,50 @@
       letter-spacing: 0.05em;
     }
     .pm-add-btn:hover { background: var(--accent); }
+
+    /* ── INFO PAGE OVERLAY ── */
+    .info-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .info-overlay.active { display: flex; }
+    .info-modal {
+      background: var(--card);
+      max-width: 560px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      animation: popIn .25s ease;
+      position: relative;
+    }
+    .info-modal-header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .info-modal-header h3 { font-family: 'Shippori Mincho', serif; font-size: 22px; }
+    .info-modal-body { padding: 28px 32px; }
+    .info-modal-body p { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 16px; }
+    .info-modal-body h4 { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 8px; margin-top: 20px; }
+    .info-modal-body ul { padding-left: 18px; }
+    .info-modal-body ul li { font-size: 14px; color: var(--muted); line-height: 1.9; }
+    .info-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .info-close:hover { color: var(--dark); }
 
     /* ── TOAST ── */
     .toast-container {
@@ -607,6 +640,28 @@
     .toast.success { border-left: 3px solid #6bc67e; }
     .toast.info { border-left: 3px solid #6ab0c8; }
     .toast.wish { border-left: 3px solid #e88; }
+
+    /* ── CHECKOUT ── */
+    .checkout-modal {
+      max-width: 520px;
+      grid-template-columns: 1fr;
+    }
+    .checkout-step { padding: 32px; display: flex; flex-direction: column; gap: 12px; }
+    .checkout-input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--dark);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .checkout-input:focus { border-color: var(--accent); }
+    .checkout-input::placeholder { color: var(--muted); }
+    .checkout-row { display: flex; gap: 12px; }
+    .checkout-row .checkout-input { flex: 1; }
 
     /* ── KEYFRAMES ── */
     @keyframes fadeIn {
@@ -644,9 +699,13 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">KURA <span>MARKET</span></a>
+  <a class="logo" onclick="scrollToTop()">KURA <span>MARKET</span></a>
   <ul class="nav-links">
-   
+    <li><a onclick="filterByCategory('all'); scrollToProducts()">新着商品</a></li>
+    <li><a onclick="showRanking()">ランキング</a></li>
+    <li><a onclick="filterByCategory('all'); scrollToProducts()">セール</a></li>
+    <li><a onclick="openInfo('faq')">よくある質問</a></li>
+    <li><a onclick="openInfo('shipping')">配送について</a></li>
   </ul>
   <div class="nav-right">
     <div class="nav-search">
@@ -666,7 +725,7 @@
     <div class="hero-tag">2026年 春の新作コレクション</div>
     <h1 class="hero-title">暮らしに<br>上質を。</h1>
     <p class="hero-sub">厳選した日本各地の逸品を、あなたの元へ。食・住・衣をテーマにしたセレクトショップ。</p>
-    <a href="#products" class="btn-primary">今すぐ購入する</a>
+    <a class="btn-primary" onclick="scrollToProducts()">今すぐ購入する</a>
   </div>
   <div class="hero-image"><span>🏮</span></div>
 </div>
@@ -679,33 +738,31 @@
     <div class="cat-card" onclick="filterByCategory('food')">
       <div class="cat-icon">🍱</div>
       <div class="cat-name">食品・グルメ</div>
-      <div class="cat-count">1,234点</div>
+      <div class="cat-count"></div>
     </div>
     <div class="cat-card" onclick="filterByCategory('interior')">
       <div class="cat-icon">🏠</div>
       <div class="cat-name">インテリア</div>
-      <div class="cat-count">856点</div>
+      <div class="cat-count"></div>
     </div>
     <div class="cat-card" onclick="filterByCategory('beauty')">
       <div class="cat-icon">🧴</div>
       <div class="cat-name">ビューティー</div>
-      <div class="cat-count">412点</div>
+      <div class="cat-count"></div>
     </div>
     <div class="cat-card" onclick="filterByCategory('stationery')">
       <div class="cat-icon">📖</div>
       <div class="cat-name">文具・紙製品</div>
-      <div class="cat-count">543点</div>
+      <div class="cat-count"></div>
     </div>
   </div>
 </div>
 
 <!-- PRODUCTS -->
 <div class="section" style="padding-top: 0;" id="products">
-  <h2 class="section-title">おすすめ商品</h2>
-  <p class="section-sub">今週の人気アイテム</p>
-  <div class="products-grid" id="productsGrid">
-    <!-- rendered by JS -->
-  </div>
+  <h2 class="section-title" id="productsSectionTitle">おすすめ商品</h2>
+  <p class="section-sub" id="productsSectionSub">今週の人気アイテム</p>
+  <div class="products-grid" id="productsGrid"></div>
 </div>
 
 <!-- PROMO BANNER -->
@@ -714,7 +771,7 @@
     <h2>会員登録で10%OFF</h2>
     <p>初回購入クーポンをプレゼント中</p>
   </div>
-  <button class="btn-outline" onclick="showToast('準備中です。もう少しお待ちください。', 'info')">無料で会員登録する</button>
+  <button class="btn-outline" onclick="openInfo('register')">無料で会員登録する</button>
 </div>
 
 <!-- FOOTER -->
@@ -726,28 +783,28 @@
   <div class="footer-col">
     <h4>ショップ</h4>
     <ul>
-      <li>新着商品</li>
-      <li>ランキング</li>
-      <li>セール</li>
-      <li>ギフト</li>
+      <li onclick="filterByCategory('all'); scrollToProducts()">新着商品</li>
+      <li onclick="showRanking()">ランキング</li>
+      <li onclick="filterByCategory('all'); scrollToProducts()">セール</li>
+      <li onclick="filterByCategory('all'); scrollToProducts()">ギフト</li>
     </ul>
   </div>
   <div class="footer-col">
     <h4>サポート</h4>
     <ul>
-      <li>よくある質問</li>
-      <li>配送について</li>
-      <li>返品・交換</li>
-      <li>お問い合わせ</li>
+      <li onclick="openInfo('faq')">よくある質問</li>
+      <li onclick="openInfo('shipping')">配送について</li>
+      <li onclick="openInfo('returns')">返品・交換</li>
+      <li onclick="openInfo('contact')">お問い合わせ</li>
     </ul>
   </div>
   <div class="footer-col">
     <h4>会社情報</h4>
     <ul>
-      <li>会社概要</li>
-      <li>採用情報</li>
-      <li>プライバシー</li>
-      <li>利用規約</li>
+      <li onclick="openInfo('about')">会社概要</li>
+      <li onclick="openInfo('careers')">採用情報</li>
+      <li onclick="openInfo('privacy')">プライバシー</li>
+      <li onclick="openInfo('terms')">利用規約</li>
     </ul>
   </div>
 </footer>
@@ -774,9 +831,7 @@
       <span>合計</span>
       <span id="totalVal">¥550</span>
     </div>
-   <button class="checkout-btn" onclick="openCheckoutModal()">
-  レジへ進む →
-</button>
+    <button class="checkout-btn" onclick="openCheckoutModal()">レジへ進む →</button>
   </div>
 </div>
 
@@ -803,64 +858,52 @@
   </div>
 </div>
 
-<!-- TOAST -->
 <!-- CHECKOUT MODAL -->
 <div class="product-modal-overlay" id="checkoutModal">
-  <div class="product-modal" style="max-width:520px;grid-template-columns:1fr;">
+  <div class="product-modal checkout-modal">
+    <button class="pm-close" onclick="closeCheckoutModal()">×</button>
 
     <!-- STEP 1 -->
-    <div class="pm-body" id="checkoutStep1">
-      <div>
-        <div class="pm-tag">STEP 1</div>
-        <div class="pm-name">お客様情報</div>
-
-        <input type="text" placeholder="お名前"
-          style="width:100%;padding:12px;margin-top:16px;margin-bottom:12px;border:1px solid #ddd;">
-
-        <input type="email" placeholder="メールアドレス"
-          style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
-
-        <input type="text" placeholder="住所"
-          style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
-
-        <input type="text" placeholder="電話番号"
-          style="width:100%;padding:12px;margin-bottom:20px;border:1px solid #ddd;">
-      </div>
-
-      <button class="pm-add-btn" onclick="goToPaymentStep()">
-        決済情報入力へ
-      </button>
+    <div class="checkout-step" id="checkoutStep1">
+      <div class="pm-tag">STEP 1 / 2</div>
+      <div class="pm-name" style="font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:4px;">お客様情報</div>
+      <input class="checkout-input" type="text" placeholder="お名前" id="c_name">
+      <input class="checkout-input" type="email" placeholder="メールアドレス" id="c_email">
+      <input class="checkout-input" type="text" placeholder="郵便番号（例：100-0001）" id="c_zip">
+      <input class="checkout-input" type="text" placeholder="住所" id="c_address">
+      <input class="checkout-input" type="tel" placeholder="電話番号" id="c_tel">
+      <button class="pm-add-btn" style="margin-top:8px;" onclick="goToPaymentStep()">決済情報入力へ →</button>
     </div>
 
     <!-- STEP 2 -->
-    <div class="pm-body" id="checkoutStep2" style="display:none;">
-      <div>
-        <div class="pm-tag">STEP 2</div>
-        <div class="pm-name">お支払い情報</div>
-
-        <input type="text" placeholder="カード名義"
-          style="width:100%;padding:12px;margin-top:16px;margin-bottom:12px;border:1px solid #ddd;">
-
-        <input type="text" placeholder="0000 0000 0000 0000"
-          style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
-
-        <div style="display:flex;gap:12px;">
-          <input type="text" placeholder="MM/YY"
-            style="flex:1;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
-
-          <input type="text" placeholder="CVV"
-            style="flex:1;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
-        </div>
+    <div class="checkout-step" id="checkoutStep2" style="display:none;">
+      <div class="pm-tag">STEP 2 / 2</div>
+      <div class="pm-name" style="font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:4px;">お支払い情報</div>
+      <input class="checkout-input" type="text" placeholder="カード名義（ローマ字）" id="c_holder">
+      <input class="checkout-input" type="text" placeholder="カード番号　0000 0000 0000 0000" id="c_number" maxlength="19" oninput="formatCardNumber(this)">
+      <div class="checkout-row">
+        <input class="checkout-input" type="text" placeholder="有効期限　MM/YY" id="c_expiry" maxlength="5" oninput="formatExpiry(this)">
+        <input class="checkout-input" type="text" placeholder="セキュリティコード" id="c_cvv" maxlength="4">
       </div>
-
-      <button class="pm-add-btn" onclick="submitCheckout()">
-        決済を確認する
-      </button>
+      <div id="orderSummaryInCheckout" style="background:var(--bg);padding:16px;border:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.8;"></div>
+      <button class="pm-add-btn" style="margin-top:8px;" onclick="submitCheckout()">注文を確定する</button>
+      <button onclick="backToStep1()" style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;text-align:center;">← お客様情報に戻る</button>
     </div>
-
-    <button class="pm-close" onclick="closeCheckoutModal()">×</button>
   </div>
 </div>
+
+<!-- INFO MODAL -->
+<div class="info-overlay" id="infoOverlay" onclick="closeInfoModal(event)">
+  <div class="info-modal" id="infoModal">
+    <div class="info-modal-header">
+      <h3 id="infoTitle"></h3>
+      <button class="info-close" onclick="closeInfoDirect()">×</button>
+    </div>
+    <div class="info-modal-body" id="infoBody"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
 <div class="toast-container" id="toastContainer"></div>
 
 <script>
@@ -870,54 +913,161 @@
       id: 1, emoji: '🍵', tag: '京都産', name: '宇治抹茶 プレミアム缶 100g',
       rating: '★★★★★', reviews: 128, price: 3280, original: 4500,
       category: 'food',
-      desc: '京都・宇治の茶師が丹精込めて作った一番摘み抹茶。鮮やかな緑と豊かな香りが特徴です。'
+      desc: '京都・宇治の茶師が丹精込めて作った一番摘み抹茶。鮮やかな緑と豊かな香りが特徴です。贈答用の化粧缶入りで、ギフトにも最適です。'
     },
     {
       id: 2, emoji: '🪴', tag: '職人手作り', name: '信楽焼 花瓶 中型 グレー',
       rating: '★★★★☆', reviews: 64, price: 12800, original: 15000,
       category: 'interior',
-      desc: '滋賀・信楽の窯元が一点一点手作りした花瓶。自然釉の風合いが空間を引き締めます。'
+      desc: '滋賀・信楽の窯元が一点一点手作りした花瓶。自然釉の風合いが空間を引き締めます。高さ約24cm、口径約8cm。'
     },
     {
       id: 3, emoji: '🧴', tag: '無添加', name: '北海道産 馬油クリーム 50ml',
       rating: '★★★★★', reviews: 302, price: 2180, original: 2800,
       category: 'beauty',
-      desc: '北海道の牧場から生まれた馬油を100%使用。無添加処方で敏感肌にも安心してお使いいただけます。'
+      desc: '北海道の牧場から生まれた馬油を100%使用。無添加処方で敏感肌にも安心してお使いいただけます。顔・体・手肌に。'
     },
     {
       id: 4, emoji: '📚', tag: '限定品', name: '和紙ノート 3冊セット A5',
       rating: '★★★★☆', reviews: 87, price: 1980, original: 2400,
       category: 'stationery',
-      desc: '越前和紙を使った風合い豊かなノート。万年筆ともインク滲みしにくい特別な紙質です。'
+      desc: '越前和紙を使った風合い豊かなノート。万年筆ともインク滲みしにくい特別な紙質です。横罫・方眼・無地の3種類セット。'
     },
     {
       id: 5, emoji: '🍶', tag: '新潟産', name: '純米大吟醸 720ml',
       rating: '★★★★★', reviews: 215, price: 4980, original: 5800,
       category: 'food',
-      desc: '新潟・越後の蔵元が醸す、透き通るような香りと淡麗な味わいの純米大吟醸酒。'
+      desc: '新潟・越後の蔵元が醸す、透き通るような香りと淡麗な味わいの純米大吟醸酒。冷やしてお召し上がりください。'
     },
     {
       id: 6, emoji: '🕯️', tag: 'アロマ', name: '京都 お香セット 30本入',
       rating: '★★★★☆', reviews: 143, price: 1680, original: 2000,
       category: 'interior',
-      desc: '京都の老舗香舗が選び抜いた天然原料のみ使用。自然で上品な香りが空間を満たします。'
+      desc: '京都の老舗香舗が選び抜いた天然原料のみ使用。自然で上品な香りが空間を満たします。白檀・沈香・桜の3種類各10本入り。'
     },
     {
       id: 7, emoji: '🍫', tag: '有機栽培', name: 'オーガニックカカオ チョコ 5種',
       rating: '★★★★★', reviews: 189, price: 2480, original: 3000,
       category: 'food',
-      desc: '農薬不使用のカカオを使用したクラフトチョコレート。各産地の風味の違いをお楽しみください。'
+      desc: '農薬不使用のカカオを使用したクラフトチョコレート。各産地の風味の違いをお楽しみください。ペルー・エクアドル他5カ国産。'
     },
     {
       id: 8, emoji: '✏️', tag: '職人製', name: '黒柿 木軸ボールペン',
       rating: '★★★★☆', reviews: 56, price: 8800, original: 10000,
       category: 'stationery',
-      desc: '希少な黒柿材を職人が削り出した一本。手に馴染む重さと美しい木目が魅力の逸品です。'
+      desc: '希少な黒柿材を職人が削り出した一本。手に馴染む重さと美しい木目が魅力の逸品です。替芯対応（パーカータイプ）。'
     },
   ];
 
+  // ── INFO CONTENT ──────────────────────────────────────────────────
+  const infoContent = {
+    faq: {
+      title: 'よくある質問',
+      body: `
+        <h4>注文について</h4>
+        <p>Q. 注文後のキャンセルはできますか？<br>A. 注文確定後24時間以内であればキャンセルが可能です。それ以降は発送準備に入るためキャンセルできません。</p>
+        <p>Q. 領収書の発行はできますか？<br>A. はい、注文完了メールより領収書のPDFをダウンロードいただけます。</p>
+        <h4>商品について</h4>
+        <p>Q. 在庫切れの商品は再入荷しますか？<br>A. 商品により異なります。再入荷通知の登録をご利用ください。</p>
+        <p>Q. ギフト包装はできますか？<br>A. カート画面にてギフト包装オプション（¥330）をお選びいただけます。</p>
+      `
+    },
+    shipping: {
+      title: '配送について',
+      body: `
+        <h4>送料</h4>
+        <p>全国一律 ¥550（税込）。¥5,000以上のご購入で送料無料となります。</p>
+        <h4>配送業者・日数</h4>
+        <p>ヤマト運輸または佐川急便にて発送いたします。注文確定後、通常2〜4営業日以内にお届けします。</p>
+        <h4>配送地域</h4>
+        <p>日本国内全域に対応しています。離島・一部地域では追加送料が発生する場合があります。</p>
+        <h4>時間帯指定</h4>
+        <p>午前・14〜16時・16〜18時・18〜20時・20〜21時からお選びいただけます。</p>
+      `
+    },
+    returns: {
+      title: '返品・交換',
+      body: `
+        <h4>返品条件</h4>
+        <p>商品到着後7日以内で、未使用・未開封のものに限り返品をお受けします。お客様都合の場合、送料はお客様負担となります。</p>
+        <h4>交換について</h4>
+        <p>サイズ違い・色違いの交換は到着後7日以内にご連絡ください。在庫状況により対応できない場合があります。</p>
+        <h4>不良品の場合</h4>
+        <p>商品に破損・欠陥があった場合は、到着後7日以内にお問い合わせください。送料当社負担で交換または返金対応いたします。</p>
+      `
+    },
+    contact: {
+      title: 'お問い合わせ',
+      body: `
+        <p>ご不明な点はお気軽にご連絡ください。</p>
+        <h4>メール</h4>
+        <p>support@kura-market.jp<br>（受付時間：平日 10:00〜18:00）</p>
+        <h4>電話</h4>
+        <p>0120-XXX-XXX<br>（平日 10:00〜17:00）</p>
+        <h4>返信について</h4>
+        <p>通常2営業日以内にご返答いたします。土日祝日はお時間をいただく場合があります。</p>
+      `
+    },
+    about: {
+      title: '会社概要',
+      body: `
+        <h4>KURA MARKET 株式会社</h4>
+        <p>設立：2018年4月<br>代表取締役：山田 蔵之介<br>所在地：東京都渋谷区神南1-2-3 KURA BLDG 5F<br>事業内容：日本各地の食品・生活雑貨のセレクト販売</p>
+        <p>KURA MARKETは「本物の品質を、より多くの人へ」をミッションに、職人・生産者と直接契約し、中間業者を排除することで適正価格でお届けしています。</p>
+      `
+    },
+    careers: {
+      title: '採用情報',
+      body: `
+        <p>KURA MARKETでは仲間を募集しています。</p>
+        <h4>募集職種</h4>
+        <ul>
+          <li>バイヤー（食品・生活雑貨）</li>
+          <li>Webエンジニア（フロントエンド）</li>
+          <li>カスタマーサポート</li>
+        </ul>
+        <h4>応募方法</h4>
+        <p>careers@kura-market.jp まで履歴書・職務経歴書をお送りください。</p>
+      `
+    },
+    privacy: {
+      title: 'プライバシーポリシー',
+      body: `
+        <p>当社は、お客様の個人情報保護を重要な責務と考え、適切な管理・保護に努めます。</p>
+        <h4>収集する情報</h4>
+        <p>氏名、住所、電話番号、メールアドレス、購入履歴などの情報を収集します。</p>
+        <h4>利用目的</h4>
+        <ul>
+          <li>商品の発送・決済処理</li>
+          <li>お問い合わせへの対応</li>
+          <li>サービス改善のための分析</li>
+        </ul>
+        <h4>第三者提供</h4>
+        <p>法令に基づく場合を除き、お客様の同意なく第三者に個人情報を提供することはありません。</p>
+      `
+    },
+    terms: {
+      title: '利用規約',
+      body: `
+        <p>本規約は、KURA MARKET株式会社（以下「当社」）が提供するサービスのご利用条件を定めるものです。</p>
+        <h4>第1条（適用）</h4>
+        <p>本規約は、本サービスの利用に関する当社とユーザーとの間の権利義務関係を定めることを目的とし、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されます。</p>
+        <h4>第2条（禁止事項）</h4>
+        <ul>
+          <li>法令または公序良俗に違反する行為</li>
+          <li>虚偽の情報を登録する行為</li>
+          <li>不正アクセス行為</li>
+        </ul>
+      `
+    },
+    register: {
+      title: '会員登録（準備中）',
+      body: `<p>会員登録機能は現在準備中です。近日中に公開予定ですので、もうしばらくお待ちください。</p><p>会員登録いただくと、初回購入10%OFFクーポンのほか、お気に入り機能・注文履歴の管理などをご利用いただけます。</p>`
+    }
+  };
+
   // ── STATE ─────────────────────────────────────────────────────────
-  let cart = []; // { id, qty }
+  let cart = [];
   let wishlist = new Set();
   let currentFilter = 'all';
 
@@ -952,10 +1102,30 @@
   }
 
   function filterByCategory(cat) {
-    currentFilter = currentFilter === cat ? 'all' : cat;
+    currentFilter = cat === currentFilter ? 'all' : cat;
     document.getElementById('searchInput').value = '';
     filterProducts();
+    const titles = { food:'食品・グルメ', interior:'インテリア', beauty:'ビューティー', stationery:'文具・紙製品', all:'おすすめ商品' };
+    document.getElementById('productsSectionTitle').textContent = titles[currentFilter] || 'おすすめ商品';
+    document.getElementById('productsSectionSub').textContent = currentFilter === 'all' ? '今週の人気アイテム' : 'カテゴリーの商品一覧';
+  }
+
+  function scrollToProducts() {
     document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showRanking() {
+    const ranked = [...products].sort((a, b) => b.reviews - a.reviews);
+    currentFilter = 'all';
+    document.getElementById('searchInput').value = '';
+    renderProducts(ranked);
+    document.getElementById('productsSectionTitle').textContent = 'ランキング';
+    document.getElementById('productsSectionSub').textContent = 'レビュー数順の人気商品';
+    scrollToProducts();
   }
 
   // ── CART ──────────────────────────────────────────────────────────
@@ -964,20 +1134,13 @@
     const existing = cart.find(i => i.id === id);
     if (existing) existing.qty++;
     else cart.push({ id, qty: 1 });
-
     updateCartUI();
-
-    // Button feedback
     const btn = document.getElementById('addBtn' + id);
     if (btn) {
       btn.textContent = '✓ 追加しました';
       btn.classList.add('added');
-      setTimeout(() => {
-        btn.textContent = 'カートに追加';
-        btn.classList.remove('added');
-      }, 1500);
+      setTimeout(() => { btn.textContent = 'カートに追加'; btn.classList.remove('added'); }, 1500);
     }
-
     const product = products.find(p => p.id === id);
     showToast(`${product.emoji} ${product.name} をカートに追加しました`, 'success');
   }
@@ -1027,7 +1190,6 @@
   function renderDrawer() {
     const el = document.getElementById('drawerItems');
     const footer = document.getElementById('drawerFooter');
-
     if (cart.length === 0) {
       el.innerHTML = `
         <div class="drawer-empty">
@@ -1037,7 +1199,6 @@
       footer.style.display = 'none';
       return;
     }
-
     el.innerHTML = cart.map(item => {
       const p = products.find(pr => pr.id === item.id);
       return `
@@ -1056,14 +1217,9 @@
           </div>
         </div>`;
     }).join('');
-
-    const subtotal = cart.reduce((s, i) => {
-      const p = products.find(pr => pr.id === i.id);
-      return s + p.price * i.qty;
-    }, 0);
+    const subtotal = cart.reduce((s, i) => { const p = products.find(pr => pr.id === i.id); return s + p.price * i.qty; }, 0);
     const shipping = subtotal >= 5000 ? 0 : 550;
     const total = subtotal + shipping;
-
     document.getElementById('subtotalVal').textContent = '¥' + subtotal.toLocaleString();
     document.getElementById('shippingVal').textContent = shipping === 0 ? '無料' : '¥' + shipping.toLocaleString();
     document.getElementById('totalVal').textContent = '¥' + total.toLocaleString();
@@ -1073,22 +1229,14 @@
   // ── WISHLIST ──────────────────────────────────────────────────────
   function toggleWish(event, id) {
     event.stopPropagation();
-    if (wishlist.has(id)) {
-      wishlist.delete(id);
-      showToast('お気に入りから削除しました', 'info');
-    } else {
-      wishlist.add(id);
-      showToast('❤️ お気に入りに追加しました', 'wish');
-    }
+    if (wishlist.has(id)) { wishlist.delete(id); showToast('お気に入りから削除しました', 'info'); }
+    else { wishlist.add(id); showToast('❤️ お気に入りに追加しました', 'wish'); }
     filterProducts();
   }
 
   // ── PRODUCT MODAL ─────────────────────────────────────────────────
-  let modalProductId = null;
-
   function openProductModal(id) {
     const p = products.find(pr => pr.id === id);
-    modalProductId = id;
     document.getElementById('pmImage').textContent = p.emoji;
     document.getElementById('pmTag').textContent = p.tag;
     document.getElementById('pmName').textContent = p.name;
@@ -1096,9 +1244,7 @@
     document.getElementById('pmRating').innerHTML = `<span>${p.rating}</span> (${p.reviews}件のレビュー)`;
     document.getElementById('pmPrice').textContent = '¥' + p.price.toLocaleString();
     document.getElementById('pmOriginal').textContent = '¥' + p.original.toLocaleString();
-    document.getElementById('pmAddBtn').onclick = () => {
-      addToCartFromModal(id);
-    };
+    document.getElementById('pmAddBtn').onclick = () => addToCartFromModal(id);
     document.getElementById('productModal').classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -1122,6 +1268,83 @@
     document.body.style.overflow = '';
   }
 
+  // ── INFO MODAL ────────────────────────────────────────────────────
+  function openInfo(key) {
+    const content = infoContent[key];
+    if (!content) return;
+    document.getElementById('infoTitle').textContent = content.title;
+    document.getElementById('infoBody').innerHTML = content.body;
+    document.getElementById('infoOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeInfoModal(event) {
+    if (event.target === document.getElementById('infoOverlay')) closeInfoDirect();
+  }
+  function closeInfoDirect() {
+    document.getElementById('infoOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // ── CHECKOUT ──────────────────────────────────────────────────────
+  function openCheckoutModal() {
+    // Show order summary
+    const subtotal = cart.reduce((s, i) => { const p = products.find(pr => pr.id === i.id); return s + p.price * i.qty; }, 0);
+    const shipping = subtotal >= 5000 ? 0 : 550;
+    document.getElementById('orderSummaryInCheckout').innerHTML =
+      cart.map(i => { const p = products.find(pr => pr.id === i.id); return `${p.emoji} ${p.name} × ${i.qty}　¥${(p.price*i.qty).toLocaleString()}`; }).join('<br>') +
+      `<br>─────────────────<br>小計：¥${subtotal.toLocaleString()}　送料：${shipping===0?'無料':'¥'+shipping.toLocaleString()}<br><strong style="color:var(--accent)">合計：¥${(subtotal+shipping).toLocaleString()}</strong>`;
+    document.getElementById('checkoutModal').classList.add('active');
+    document.getElementById('checkoutStep1').style.display = 'flex';
+    document.getElementById('checkoutStep2').style.display = 'none';
+  }
+
+  function closeCheckoutModal() {
+    document.getElementById('checkoutModal').classList.remove('active');
+  }
+
+  function goToPaymentStep() {
+    const name = document.getElementById('c_name').value.trim();
+    const email = document.getElementById('c_email').value.trim();
+    const address = document.getElementById('c_address').value.trim();
+    if (!name || !email || !address) {
+      showToast('お名前・メールアドレス・住所は必須です', 'info');
+      return;
+    }
+    document.getElementById('checkoutStep1').style.display = 'none';
+    document.getElementById('checkoutStep2').style.display = 'flex';
+  }
+
+  function backToStep1() {
+    document.getElementById('checkoutStep1').style.display = 'flex';
+    document.getElementById('checkoutStep2').style.display = 'none';
+  }
+
+  function formatCardNumber(input) {
+    let v = input.value.replace(/\D/g, '').substring(0, 16);
+    input.value = v.replace(/(.{4})/g, '$1 ').trim();
+  }
+
+  function formatExpiry(input) {
+    let v = input.value.replace(/\D/g, '').substring(0, 4);
+    if (v.length >= 3) v = v.substring(0, 2) + '/' + v.substring(2);
+    input.value = v;
+  }
+
+  function submitCheckout() {
+    const holder = document.getElementById('c_holder').value.trim();
+    const number = document.getElementById('c_number').value.replace(/\s/g,'');
+    const cvv = document.getElementById('c_cvv').value.trim();
+    if (!holder || number.length < 16 || !cvv) {
+      showToast('決済情報を正しく入力してください', 'info');
+      return;
+    }
+    closeCheckoutModal();
+    closeCart();
+    cart = [];
+    updateCartUI();
+    showToast('✅ ご注文ありがとうございました！', 'success');
+  }
+
   // ── TOAST ─────────────────────────────────────────────────────────
   function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
@@ -1134,25 +1357,6 @@
 
   // ── INIT ──────────────────────────────────────────────────────────
   renderProducts(products);
-  function openCheckoutModal() {
-  document.getElementById('checkoutModal').classList.add('active');
-  document.getElementById('checkoutStep1').style.display = 'flex';
-  document.getElementById('checkoutStep2').style.display = 'none';
-}
-
-function closeCheckoutModal() {
-  document.getElementById('checkoutModal').classList.remove('active');
-}
-
-function goToPaymentStep() {
-  document.getElementById('checkoutStep1').style.display = 'none';
-  document.getElementById('checkoutStep2').style.display = 'flex';
-}
-
-function submitCheckout() {
-  showToast('ご注文を受け付けました', 'success');
-  closeCheckoutModal();
-}
 </script>
 </body>
 </html>
