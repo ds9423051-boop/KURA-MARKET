@@ -774,7 +774,9 @@
       <span>合計</span>
       <span id="totalVal">¥550</span>
     </div>
-    <button class="checkout-btn" onclick="showToast('決済機能は現在準備中です', 'info')">レジへ進む →</button>
+   <button class="checkout-btn" onclick="openCheckoutModal()">
+  レジへ進む →
+</button>
   </div>
 </div>
 
@@ -802,6 +804,63 @@
 </div>
 
 <!-- TOAST -->
+<!-- CHECKOUT MODAL -->
+<div class="product-modal-overlay" id="checkoutModal">
+  <div class="product-modal" style="max-width:520px;grid-template-columns:1fr;">
+
+    <!-- STEP 1 -->
+    <div class="pm-body" id="checkoutStep1">
+      <div>
+        <div class="pm-tag">STEP 1</div>
+        <div class="pm-name">お客様情報</div>
+
+        <input type="text" placeholder="お名前"
+          style="width:100%;padding:12px;margin-top:16px;margin-bottom:12px;border:1px solid #ddd;">
+
+        <input type="email" placeholder="メールアドレス"
+          style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
+
+        <input type="text" placeholder="住所"
+          style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
+
+        <input type="text" placeholder="電話番号"
+          style="width:100%;padding:12px;margin-bottom:20px;border:1px solid #ddd;">
+      </div>
+
+      <button class="pm-add-btn" onclick="goToPaymentStep()">
+        決済情報入力へ
+      </button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="pm-body" id="checkoutStep2" style="display:none;">
+      <div>
+        <div class="pm-tag">STEP 2</div>
+        <div class="pm-name">お支払い情報</div>
+
+        <input type="text" placeholder="カード名義"
+          style="width:100%;padding:12px;margin-top:16px;margin-bottom:12px;border:1px solid #ddd;">
+
+        <input type="text" placeholder="0000 0000 0000 0000"
+          style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
+
+        <div style="display:flex;gap:12px;">
+          <input type="text" placeholder="MM/YY"
+            style="flex:1;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
+
+          <input type="text" placeholder="CVV"
+            style="flex:1;padding:12px;margin-bottom:12px;border:1px solid #ddd;">
+        </div>
+      </div>
+
+      <button class="pm-add-btn" onclick="submitCheckout()">
+        決済を確認する
+      </button>
+    </div>
+
+    <button class="pm-close" onclick="closeCheckoutModal()">×</button>
+  </div>
+</div>
 <div class="toast-container" id="toastContainer"></div>
 
 <script>
@@ -1075,6 +1134,25 @@
 
   // ── INIT ──────────────────────────────────────────────────────────
   renderProducts(products);
+  function openCheckoutModal() {
+  document.getElementById('checkoutModal').classList.add('active');
+  document.getElementById('checkoutStep1').style.display = 'flex';
+  document.getElementById('checkoutStep2').style.display = 'none';
+}
+
+function closeCheckoutModal() {
+  document.getElementById('checkoutModal').classList.remove('active');
+}
+
+function goToPaymentStep() {
+  document.getElementById('checkoutStep1').style.display = 'none';
+  document.getElementById('checkoutStep2').style.display = 'flex';
+}
+
+function submitCheckout() {
+  showToast('ご注文を受け付けました', 'success');
+  closeCheckoutModal();
+}
 </script>
 </body>
 </html>
