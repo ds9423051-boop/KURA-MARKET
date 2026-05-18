@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KURA MARKET</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+
     :root {
       --bg: #f5f0e8;
       --dark: #1a1410;
@@ -17,291 +17,313 @@
       --border: #e0d8c8;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--dark);
-      font-family: 'DM Sans', sans-serif;
+    body{
+      background:var(--bg);
+      color:var(--dark);
+      font-family:'DM Sans', sans-serif;
     }
 
-    nav {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 0 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    .test-banner{
+      background:var(--accent);
     }
 
-    .logo {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--dark);
-      text-decoration: none;
+    nav{
+      background:var(--card);
+      border-bottom:1px solid var(--border);
+      padding:0 48px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:64px;
+      position:sticky;
+      top:0;
+      z-index:100;
     }
 
-    .logo span {
-      color: var(--accent);
+    .logo{
+      font-family:'Shippori Mincho', serif;
+      font-size:22px;
+      font-weight:700;
+      text-decoration:none;
+      color:var(--dark);
     }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
+    .logo span{
+      color:var(--accent);
     }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 14px;
+    .nav-links{
+      display:flex;
+      gap:32px;
+      list-style:none;
     }
 
-    .nav-right button {
-      background: var(--dark);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 13px;
+    .nav-links a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
     }
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 520px;
+    .nav-right button{
+      background:var(--dark);
+      color:#fff;
+      border:none;
+      padding:10px 20px;
+      cursor:pointer;
     }
 
-    .hero-text {
-      padding: 80px 64px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      min-height:520px;
     }
 
-    .hero-tag {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
+    .hero-text{
+      padding:80px 64px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
     }
 
-    .hero-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 52px;
-      line-height: 1.15;
-      margin-bottom: 20px;
+    .hero-tag{
+      font-size:11px;
+      letter-spacing:.2em;
+      color:var(--accent);
+      margin-bottom:20px;
     }
 
-    .hero-sub {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 36px;
-      max-width: 360px;
+    .hero-title{
+      font-family:'Shippori Mincho', serif;
+      font-size:52px;
+      line-height:1.15;
+      margin-bottom:20px;
     }
 
-    .btn-primary {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 14px 32px;
-      font-size: 14px;
-      text-decoration: none;
-      width: fit-content;
+    .hero-sub{
+      color:var(--muted);
+      line-height:1.7;
+      margin-bottom:36px;
+      max-width:360px;
     }
 
-    .hero-image {
-      background: #e8e0d0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 120px;
+    .btn-primary{
+      display:inline-block;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      padding:14px 32px;
+      cursor:pointer;
+      text-decoration:none;
     }
 
-    .section {
-      padding: 64px 48px;
+    .hero-image{
+      background:#e8e0d0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:120px;
     }
 
-    .section-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 28px;
-      margin-bottom: 8px;
+    .section{
+      padding:64px 48px;
     }
 
-    .section-sub {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 36px;
+    .section-title{
+      font-family:'Shippori Mincho', serif;
+      font-size:28px;
+      margin-bottom:8px;
     }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+    .section-sub{
+      color:var(--muted);
+      margin-bottom:36px;
     }
 
-    .product-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      transition: .2s;
+    .categories{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
     }
 
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    .cat-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      padding:32px 20px;
+      text-align:center;
     }
 
-    .product-img {
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 64px;
-      background: #f0ebe0;
+    .cat-icon{
+      font-size:36px;
+      margin-bottom:12px;
     }
 
-    .product-body {
-      padding: 16px;
+    .products-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
     }
 
-    .product-tag {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 6px;
+    .product-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      overflow:hidden;
     }
 
-    .product-name {
-      font-size: 15px;
-      font-weight: 500;
-      margin-bottom: 8px;
-      line-height: 1.4;
+    .product-img{
+      height:200px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:64px;
+      background:#f0ebe0;
     }
 
-    .product-rating {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 10px;
+    .product-body{
+      padding:16px;
     }
 
-    .product-rating span {
-      color: #e8a020;
+    .product-tag{
+      font-size:10px;
+      color:var(--accent);
+      margin-bottom:6px;
     }
 
-    .product-price {
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--accent);
-      margin-bottom: 4px;
+    .product-name{
+      font-size:15px;
+      margin-bottom:8px;
     }
 
-    .product-original {
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: line-through;
-      margin-bottom: 12px;
+    .product-rating{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:10px;
     }
 
-    .btn-add {
-      width: 100%;
-      background: var(--dark);
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
+    .product-price{
+      font-size:18px;
+      color:var(--accent);
+      margin-bottom:12px;
     }
 
-    .promo-banner {
-      background: var(--dark);
-      color: white;
-      padding: 64px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .btn-add{
+      width:100%;
+      background:var(--dark);
+      color:#fff;
+      border:none;
+      padding:10px;
+      cursor:pointer;
     }
 
-    .promo-banner h2 {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 32px;
-      margin-bottom: 8px;
+    .promo-banner{
+      background:var(--dark);
+      color:#fff;
+      padding:64px 48px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
-    .promo-banner p {
-      color: #a09880;
+    .btn-outline{
+      border:1px solid #fff;
+      background:transparent;
+      color:#fff;
+      padding:14px 32px;
+      cursor:pointer;
     }
 
-    .btn-outline {
-      border: 1px solid white;
-      color: white;
-      background: transparent;
-      padding: 14px 32px;
-      cursor: pointer;
+    footer{
+      background:#12100e;
+      color:#6a6050;
+      padding:48px;
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:32px;
     }
 
-    footer {
-      background: #12100e;
-      color: #6a6050;
-      padding: 48px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 32px;
+    .footer-logo{
+      font-family:'Shippori Mincho', serif;
+      color:#fff;
+      margin-bottom:12px;
     }
 
-    .footer-logo {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 20px;
-      color: white;
-      margin-bottom: 12px;
+    .footer-col h4{
+      margin-bottom:16px;
+      color:#a09080;
     }
 
-    .footer-desc {
-      font-size: 13px;
-      line-height: 1.7;
+    .footer-col ul{
+      list-style:none;
     }
 
-    .footer-col h4 {
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #a09080;
-      margin-bottom: 16px;
+    .footer-col li{
+      margin-bottom:8px;
     }
 
-    .footer-col ul {
-      list-style: none;
+    .footer-bottom{
+      background:#0d0b09;
+      text-align:center;
+      padding:16px;
+      color:#4a4038;
     }
 
-    .footer-col li {
-      font-size: 13px;
-      margin-bottom: 8px;
+    .modal-overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.5);
+      z-index:200;
+      align-items:center;
+      justify-content:center;
     }
 
-    .footer-bottom {
-      background: #0d0b09;
-      text-align: center;
-      padding: 16px;
-      font-size: 12px;
-      color: #4a4038;
+    .modal-overlay.active{
+      display:flex;
     }
+
+    .modal{
+      background:#fff;
+      width:90%;
+      max-width:520px;
+      padding:40px;
+    }
+
+    .modal-title{
+      font-family:'Shippori Mincho', serif;
+      margin-bottom:16px;
+    }
+
+    .modal-close{
+      width:100%;
+      background:var(--dark);
+      color:#fff;
+      border:none;
+      padding:12px;
+      cursor:pointer;
+    }
+
   </style>
 </head>
 
 <body>
+
+<div class="test-banner">
+  <img
+    src="banner.png.png"
+    alt="テストサイト"
+    style="
+      width:100%;
+      max-height:60px;
+      object-fit:cover;
+      display:block;
+    "
+  >
+</div>
 
 <nav>
 
@@ -318,9 +340,11 @@
   </ul>
 
   <div class="nav-right">
-    <button id="cart-btn">
+
+    <button id="cartButton" onclick="openCart()">
       🛒 カート (0)
     </button>
+
   </div>
 
 </nav>
@@ -334,28 +358,62 @@
     </div>
 
     <h1 class="hero-title">
-      暮らしに<br>
-      上質を。
+      暮らしに<br>上質を。
     </h1>
 
     <p class="hero-sub">
       厳選した日本各地の逸品を、あなたの元へ。
-      食・住・衣をテーマにしたセレクトショップ。
     </p>
 
-    <a href="product-matcha.html" class="btn-primary">
+    <a href="#products" class="btn-primary">
       商品を見る
     </a>
 
   </div>
 
   <div class="hero-image">
-    <span>🏮</span>
+    🏮
   </div>
 
 </div>
 
 <div class="section">
+
+  <h2 class="section-title">
+    カテゴリーから探す
+  </h2>
+
+  <p class="section-sub">
+    お気に入りのジャンルをお選びください
+  </p>
+
+  <div class="categories">
+
+    <div class="cat-card">
+      <div class="cat-icon">🍱</div>
+      食品・グルメ
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-icon">🏠</div>
+      インテリア
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-icon">👘</div>
+      ファッション
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-icon">📱</div>
+      電子機器
+    </div>
+
+  </div>
+
+</div>
+
+<div class="section" id="products">
 
   <h2 class="section-title">
     おすすめ商品
@@ -368,83 +426,119 @@
   <div class="products-grid">
 
     <div class="product-card">
-
-      <div class="product-img">
-        🍵
-      </div>
+      <div class="product-img">🍵</div>
 
       <div class="product-body">
 
-        <div class="product-tag">
-          京都産
-        </div>
+        <div class="product-tag">京都産</div>
 
         <div class="product-name">
-          宇治抹茶 プレミアム缶 100g
+          宇治抹茶 プレミアム缶
         </div>
 
         <div class="product-rating">
-          <span>★★★★★</span> (128)
+          ★★★★★ (128)
         </div>
 
         <div class="product-price">
           ¥3,280
         </div>
 
-        <div class="product-original">
-          ¥4,500
-        </div>
-
-        <a href="product-matcha.html">
-
-          <button class="btn-add">
-            商品詳細を見る
-          </button>
-
-        </a>
+        <button
+          class="btn-add"
+          onclick="openProduct('matcha')"
+        >
+          商品詳細を見る
+        </button>
 
       </div>
-
     </div>
 
     <div class="product-card">
-
-      <div class="product-img">
-        🪴
-      </div>
+      <div class="product-img">🪴</div>
 
       <div class="product-body">
 
-        <div class="product-tag">
-          職人手作り
-        </div>
+        <div class="product-tag">職人手作り</div>
 
         <div class="product-name">
-          信楽焼 花瓶 中型 グレー
+          信楽焼 花瓶
         </div>
 
         <div class="product-rating">
-          <span>★★★★☆</span> (64)
+          ★★★★☆ (64)
         </div>
 
         <div class="product-price">
           ¥12,800
         </div>
 
-        <div class="product-original">
-          ¥15,000
-        </div>
-
-        <a href="product-vase.html">
-
-          <button class="btn-add">
-            商品詳細を見る
-          </button>
-
-        </a>
+        <button
+          class="btn-add"
+          onclick="openProduct('vase')"
+        >
+          商品詳細を見る
+        </button>
 
       </div>
+    </div>
 
+    <div class="product-card">
+      <div class="product-img">🧴</div>
+
+      <div class="product-body">
+
+        <div class="product-tag">無添加</div>
+
+        <div class="product-name">
+          北海道産 馬油クリーム
+        </div>
+
+        <div class="product-rating">
+          ★★★★★ (302)
+        </div>
+
+        <div class="product-price">
+          ¥2,180
+        </div>
+
+        <button
+          class="btn-add"
+          onclick="openProduct('cream')"
+        >
+          商品詳細を見る
+        </button>
+
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">📚</div>
+
+      <div class="product-body">
+
+        <div class="product-tag">限定品</div>
+
+        <div class="product-name">
+          和紙ノート 3冊セット
+        </div>
+
+        <div class="product-rating">
+          ★★★★☆ (87)
+        </div>
+
+        <div class="product-price">
+          ¥1,980
+        </div>
+
+        <button
+          class="btn-add"
+          onclick="openProduct('note')"
+        >
+          商品詳細を見る
+        </button>
+
+      </div>
     </div>
 
   </div>
@@ -479,76 +573,342 @@
       KURA MARKET
     </div>
 
-    <p class="footer-desc">
+    <p>
       日本各地の職人・生産者と直接つながり、
-      本物の品質をお届けするセレクトショップ。
+      本物の品質をお届け。
     </p>
 
   </div>
 
   <div class="footer-col">
-
-    <h4>
-      ショップ
-    </h4>
+    <h4>ショップ</h4>
 
     <ul>
       <li>新着商品</li>
       <li>ランキング</li>
       <li>セール</li>
-      <li>ギフト</li>
     </ul>
-
   </div>
 
   <div class="footer-col">
-
-    <h4>
-      サポート
-    </h4>
+    <h4>サポート</h4>
 
     <ul>
       <li>よくある質問</li>
       <li>配送について</li>
       <li>返品・交換</li>
-      <li>お問い合わせ</li>
     </ul>
-
   </div>
 
   <div class="footer-col">
-
-    <h4>
-      会社情報
-    </h4>
+    <h4>会社情報</h4>
 
     <ul>
       <li>会社概要</li>
-      <li>採用情報</li>
-      <li>プライバシー</li>
       <li>利用規約</li>
     </ul>
-
   </div>
 
 </footer>
 
 <div class="footer-bottom">
-  © 2026 KURA MARKET All Rights Reserved.
+  © 2026 KURA MARKET
+</div>
+
+<!-- 商品詳細 -->
+
+<div class="modal-overlay" id="productModal">
+
+  <div class="modal">
+
+    <div id="productDetail"></div>
+
+    <br>
+
+    <button
+      class="modal-close"
+      onclick="closeProductModal()"
+    >
+      閉じる
+    </button>
+
+  </div>
+
+</div>
+
+<!-- カート -->
+
+<div class="modal-overlay" id="cartModal">
+
+  <div class="modal">
+
+    <h2 class="modal-title">
+      カート内容
+    </h2>
+
+    <div id="cartItems"></div>
+
+    <br>
+
+    <button
+      class="btn-primary"
+      style="width:100%;"
+      onclick="showCheckout()"
+    >
+      購入手続きへ進む
+    </button>
+
+    <br><br>
+
+    <button
+      class="modal-close"
+      onclick="closeCartModal()"
+    >
+      閉じる
+    </button>
+
+  </div>
+
+</div>
+
+<!-- 決済 -->
+
+<div class="modal-overlay" id="checkoutModal">
+
+  <div class="modal">
+
+    <h2 class="modal-title">
+      配送先・決済情報
+    </h2>
+
+    <form onsubmit="return fakeSubmit(event)">
+
+      <input
+        type="text"
+        placeholder="氏名"
+        required
+        style="width:100%; padding:12px; margin-bottom:12px;"
+      >
+
+      <input
+        type="text"
+        placeholder="住所"
+        required
+        style="width:100%; padding:12px; margin-bottom:12px;"
+      >
+
+      <input
+        type="text"
+        placeholder="カード番号"
+        required
+        style="width:100%; padding:12px; margin-bottom:12px;"
+      >
+
+      <button
+        class="btn-primary"
+        style="width:100%;"
+      >
+        注文を確定する
+      </button>
+
+    </form>
+
+    <br>
+
+    <button
+      class="modal-close"
+      onclick="closeCheckoutModal()"
+    >
+      閉じる
+    </button>
+
+  </div>
+
 </div>
 
 <script>
 
+let cart = [];
 let cartCount = 0;
 
-function addToCart() {
+const products = {
+
+  matcha: {
+    name:"宇治抹茶 プレミアム缶",
+    price:"¥3,280",
+    image:"🍵",
+    desc:"京都宇治産の高級抹茶を使用。"
+  },
+
+  vase: {
+    name:"信楽焼 花瓶",
+    price:"¥12,800",
+    image:"🪴",
+    desc:"職人手作りの一点物。"
+  },
+
+  cream: {
+    name:"北海道産 馬油クリーム",
+    price:"¥2,180",
+    image:"🧴",
+    desc:"無添加で敏感肌にも対応。"
+  },
+
+  note: {
+    name:"和紙ノート 3冊セット",
+    price:"¥1,980",
+    image:"📚",
+    desc:"伝統和紙を使用した限定ノート。"
+  }
+
+};
+
+function openProduct(id){
+
+  const p = products[id];
+
+  document.getElementById("productDetail").innerHTML = `
+
+    <div style="text-align:center; font-size:80px;">
+      ${p.image}
+    </div>
+
+    <h2 class="modal-title">
+      ${p.name}
+    </h2>
+
+    <p style="margin-bottom:16px;">
+      ${p.desc}
+    </p>
+
+    <div style="
+      font-size:24px;
+      color:#c84b2f;
+      margin-bottom:20px;
+    ">
+      ${p.price}
+    </div>
+
+    <button
+      class="btn-primary"
+      style="width:100%;"
+      onclick="addToCart('${id}')"
+    >
+      カートに追加
+    </button>
+
+  `;
+
+  document
+    .getElementById("productModal")
+    .classList.add("active");
+}
+
+function closeProductModal(){
+
+  document
+    .getElementById("productModal")
+    .classList.remove("active");
+}
+
+function addToCart(id){
+
+  cart.push(products[id]);
 
   cartCount++;
 
-  document.getElementById("cart-btn").innerText =
+  document.getElementById("cartButton").innerText =
     `🛒 カート (${cartCount})`;
 
+  alert("カートに追加しました");
+
+  closeProductModal();
 }
+
+function openCart(){
+
+  let html = "";
+
+  if(cart.length === 0){
+
+    html = "<p>カートは空です。</p>";
+
+  } else {
+
+    cart.forEach(item => {
+
+      html += `
+        <div style="
+          border-bottom:1px solid #ddd;
+          padding:12px 0;
+        ">
+          <strong>${item.name}</strong><br>
+          ${item.price}
+        </div>
+      `;
+    });
+
+  }
+
+  document.getElementById("cartItems").innerHTML = html;
+
+  document
+    .getElementById("cartModal")
+    .classList.add("active");
+}
+
+function closeCartModal(){
+
+  document
+    .getElementById("cartModal")
+    .classList.remove("active");
+}
+
+function showCheckout(){
+
+  closeCartModal();
+
+  document
+    .getElementById("checkoutModal")
+    .classList.add("active");
+}
+
+function closeCheckoutModal(){
+
+  document
+    .getElementById("checkoutModal")
+    .classList.remove("active");
+}
+
+function fakeSubmit(e){
+
+  e.preventDefault();
+
+  alert("注文が完了しました");
+
+  cart = [];
+  cartCount = 0;
+
+  document.getElementById("cartButton").innerText =
+    "🛒 カート (0)";
+
+  closeCheckoutModal();
+
+  return false;
+}
+
+document.querySelectorAll(".modal-overlay")
+.forEach(modal => {
+
+  modal.addEventListener("click", function(e){
+
+    if(e.target === this){
+
+      this.classList.remove("active");
+    }
+  });
+
+});
 
 </script>
 
