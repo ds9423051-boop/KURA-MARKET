@@ -2,14 +2,16 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>リダイレクトテスト</title>
-  <script>
-    // 即時リダイレクト
-    window.location.href = "https://ubiquitous-couscous-pi.vercel.app/b";
-  </script>
+  <title>iframe テスト</title>
 </head>
 <body>
-  <p>転送中...</p>
+  <h1>親ページ（メイン）</h1>
+  <p>ここが親ページのテキストです。</p>
+
+  <!-- iframe で別ページを読み込み -->
+  <iframe src="https://ubiquitous-couscous-pi.vercel.app/b" width="600" height="400">
+    <p>iframeに対応していないブラウザです</p>
+  </iframe>
 </body>
 </html>
     <meta charset="UTF-8">
