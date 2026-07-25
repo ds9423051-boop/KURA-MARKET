@@ -48,6 +48,12 @@ app.get('/b', (req, res) => {
   `);
 });
 
+// robots.txt（※ module.exports より前に記述する！）
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send("User-agent: *\nAllow: /");
+});
+
 // ログ表示
 app.get('/logs', (req, res) => {
     const rows = [...logs]
@@ -133,5 +139,5 @@ app.get('/logs.json', (req, res) => {
     res.json(logs);
 });
 
-// Vercel用
+// Vercel用（※必ず一番最後にエクスポート）
 module.exports = app;
