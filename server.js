@@ -56,6 +56,41 @@ app.get('/robots.txt', (req, res) => {
   res.send("User-agent: *\nAllow: /");
 });
 
+// Cookieをセットするエンドポイント
+app.get('/set-cookie', (req, res) => {
+    res.setHeader('Set-Cookie', 'test_id=abc123; Path=/; Max-Age=3600');
+    res.send(`
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Set Cookie</title>
+</head>
+<body style="font-family:sans-serif; padding:40px;">
+  <h1>Cookie セット済み</h1>
+  <p>test_id=abc123 を Set-Cookie しました。</p>
+</body>
+</html>
+    `);
+});
+
+// Cookieが送り返されてくるか確認するエンドポイント
+app.get('/check-cookie', (req, res) => {
+    const cookieHeader = req.headers.cookie || '(Cookieなし)';
+    res.send(`
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Check Cookie</title>
+</head>
+<body style="font-family:sans-serif; padding:40px;">
+  <h1>Cookie チェック結果</h1>
+  <p>受信したCookieヘッダー: ${cookieHeader}</p>
+</body>
+</html>
+    `);
+});
 // ログ表示
 app.get('/logs', (req, res) => {
     const rows = [...logs]
