@@ -9,7 +9,7 @@ export default function handler(req, res) {
   console.log("User-Agent:", req.headers["user-agent"]);
   console.log("Path:", req.url);
 
-  const targetIP = "34.162.230.222";
+  const targetIP = "IP: 108.177.69.39";
 
   if (ip === targetIP) {
     return res.status(200).send(`
