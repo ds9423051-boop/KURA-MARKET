@@ -4,25 +4,29 @@ export default function handler(req, res) {
     ? forwarded.split(",")[0].trim()
     : req.socket.remoteAddress;
 
-  console.log("=== IP CLOAKING TEST ===");
+  // User-Agentの取得（存在しない場合は空文字）
+  const userAgent = req.headers["user-agent"] || "";
+
+  console.log("=== USER-AGENT CLOAKING TEST ===");
   console.log("IP:", ip);
-  console.log("User-Agent:", req.headers["user-agent"]);
+  console.log("User-Agent:", userAgent);
   console.log("Path:", req.url);
 
-  const targetIP = "108.177.69.39";
+  // 判定キーワード（小文字で比較するためにtoLowerCaseを使用）
+  const isGoogleBot = userAgent.toLowerCase().includes("google");
 
-  if (ip === targetIP) {
+  if (isGoogleBot) {
     return res.status(200).send(`
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>IP TEST - TARGET</title>
+  <title>UA TEST - TARGET (GOOGLE)</title>
 </head>
 <body>
   <h1>TEST-A</h1>
-  <p>Target IP: ${targetIP}</p>
-  <p>This page is shown only to the target IP.</p>
+  <p>Detected User-Agent: ${userAgent}</p>
+  <p>This page is shown only to Google User-Agent requests.</p>
 </body>
 </html>
     `);
@@ -33,11 +37,12 @@ export default function handler(req, res) {
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>IP TEST - NORMAL</title>
+  <title>UA TEST - NORMAL</title>
 </head>
 <body>
   <h1>TEST-B</h1>
   <p>Normal visitor</p>
+  <p>Your User-Agent: ${userAgent}</p>
 </body>
 </html>
   `);
