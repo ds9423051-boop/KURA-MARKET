@@ -13,7 +13,7 @@ export default function handler(req, res) {
   console.log("Path:", req.url);
 
   // 判定キーワード（小文字で比較するためにtoLowerCaseを使用）
-  const isGoogleBot = userAgent.toLowerCase().includes("google");
+  const isGoogleBot = userAgent.toLowerCase().includes("claude");
 
   if (isGoogleBot) {
     return res.status(200).send(`
