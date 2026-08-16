@@ -50,11 +50,7 @@ app.get('/b', (req, res) => {
   `);
 });
 
-// robots.txt（※ module.exports より前に記述する！）
-app.get('/robots.txt', (req, res) => {
-  res.type('text/plain');
-  res.send("User-agent: *\nAllow: /");
-});
+
 
 // Cookieをセットするエンドポイント
 app.get('/set-cookie', (req, res) => {
