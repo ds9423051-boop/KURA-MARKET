@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-</html>
   <meta charset="UTF-8">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -696,16 +694,10 @@
   </style>
 </head>
 <body>
-<div style="display:none;" aria-hidden="true">
-    
-  </div>
-
 
 <!-- TOP BANNER -->
 <div class="top-banner">
     🎁 送料無料キャンペーン実施中 ─ ¥5,000以上のご購入で全国送料無料
-    <span style="color: var(--dark); font-size: 0px; opacity: 0;">
-    </span>
 </div>
 <!-- NAV -->
 <nav>
@@ -813,6 +805,7 @@
     <ul>
       <li onclick="openInfo('about')">会社概要</li>
       <li onclick="openInfo('careers')">採用情報</li>
+      <li onclick="openInfo('tokusho')">特定商取引法に基づく表記</li>
       <li onclick="openInfo('privacy')">プライバシー</li>
       <li onclick="openInfo('terms')">利用規約</li>
     </ul>
@@ -1013,7 +1006,7 @@
         <h4>メール</h4>
         <p>support@kura-market.jp<br>（受付時間：平日 10:00〜18:00）</p>
         <h4>電話</h4>
-        <p>0120-XXX-XXX<br>（平日 10:00〜17:00）</p>
+        <p>03-4521-6680<br>（平日 10:00〜17:00）</p>
         <h4>返信について</h4>
         <p>通常2営業日以内にご返答いたします。土日祝日はお時間をいただく場合があります。</p>
       `
@@ -1022,7 +1015,7 @@
       title: '会社概要',
       body: `
         <h4>KURA MARKET 株式会社</h4>
-        <p>設立：2018年4月<br>代表取締役：斉藤　行夫<br>所在地：東京都渋谷区神南2-11-2<br>事業内容：日本各地の食品・生活雑貨のセレクト販売</p>
+        <p>設立：2018年4月<br>代表取締役：斉藤　行夫<br>所在地：東京都渋谷区神南2-11-2<br>電話番号：03-4521-6680<br>事業内容：日本各地の食品・生活雑貨のセレクト販売</p>
         <p>KURA MARKETは「本物の品質を、より多くの人へ」をミッションに、職人・生産者と直接契約し、中間業者を排除することで適正価格でお届けしています。</p>
       `
     },
@@ -1037,7 +1030,34 @@
           <li>カスタマーサポート</li>
         </ul>
         <h4>応募方法</h4>
-        <p>careeeers@kura-market.jp まで履歴書・職務経歴書をお送りください。</p>
+        <p>careers@kura-market.jp まで履歴書・職務経歴書をお送りください。</p>
+      `
+    },
+    tokusho: {
+      title: '特定商取引法に基づく表記',
+      body: `
+        <h4>販売事業者</h4>
+        <p>KURA MARKET 株式会社</p>
+        <h4>運営統括責任者</h4>
+        <p>斉藤　行夫</p>
+        <h4>所在地</h4>
+        <p>〒150-0041　東京都渋谷区神南2-11-2</p>
+        <h4>電話番号</h4>
+        <p>03-4521-6680（平日 10:00〜17:00）</p>
+        <h4>メールアドレス</h4>
+        <p>support@kura-market.jp</p>
+        <h4>販売価格</h4>
+        <p>各商品ページに記載の価格（消費税込み）</p>
+        <h4>商品代金以外の必要料金</h4>
+        <p>送料：全国一律¥550（税込）、¥5,000以上のご購入で無料<br>ギフト包装：¥330（希望者のみ）</p>
+        <h4>支払方法</h4>
+        <p>クレジットカード（VISA / Mastercard / JCB / AMEX）</p>
+        <h4>支払時期</h4>
+        <p>ご注文確定時にお支払いが確定します。</p>
+        <h4>引渡し時期</h4>
+        <p>ご注文確定後、通常2〜4営業日以内に発送します。</p>
+        <h4>返品・交換について</h4>
+        <p>商品到着後7日以内、未使用・未開封のものに限り返品を承ります。詳細は「返品・交換」ページをご確認ください。</p>
       `
     },
   privacy: {
@@ -1370,9 +1390,6 @@ body: `
 
   // ── INIT ──────────────────────────────────────────────────────────
   renderProducts(products);
-</script>
-<script>
-
 </script>
 </body>
 </html>
