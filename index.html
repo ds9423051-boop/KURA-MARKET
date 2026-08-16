@@ -547,6 +547,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 10;
     }
     .pm-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
     .pm-name { font-family: 'Shippori Mincho', serif; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
@@ -663,6 +664,46 @@
     .checkout-input::placeholder { color: var(--muted); }
     .checkout-row { display: flex; gap: 12px; }
     .checkout-row .checkout-input { flex: 1; }
+
+    /* ── SECURITY BADGE & STYLES ── */
+    .security-badge {
+      background: #eef7ee;
+      border: 1px solid #bce2bc;
+      border-radius: 4px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--success);
+      margin-bottom: 8px;
+    }
+    .payment-icons {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+    .payment-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 6px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: #fff;
+      color: var(--muted);
+    }
+    .terms-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .terms-check input { margin-top: 2px; }
 
     /* ── KEYFRAMES ── */
     @keyframes fadeIn {
@@ -811,7 +852,7 @@
     </ul>
   </div>
 </footer>
-<div class="footer-bottom">© 2026 KURA MARKET. All rights reserved.</div>
+<div class="footer-bottom">© 2026 KURA MARKET 株式会社. All rights reserved.</div>
 
 <!-- CART DRAWER -->
 <div class="drawer-overlay" id="drawerOverlay" onclick="closeCart()"></div>
@@ -868,6 +909,9 @@
 
     <!-- STEP 1 -->
     <div class="checkout-step" id="checkoutStep1">
+      <div class="security-badge">
+        🔒 256-bit SSL暗号化によりお客様の個人情報は保護されています
+      </div>
       <div class="pm-tag">STEP 1 / 2</div>
       <div class="pm-name" style="font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:4px;">お客様情報</div>
       <input class="checkout-input" type="text" placeholder="お名前" id="c_name">
@@ -880,8 +924,17 @@
 
     <!-- STEP 2 -->
     <div class="checkout-step" id="checkoutStep2" style="display:none;">
+      <div class="security-badge">
+        🔒 SSL暗号化決済 / クレジットカード情報は安全に処理されます
+      </div>
       <div class="pm-tag">STEP 2 / 2</div>
       <div class="pm-name" style="font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:4px;">お支払い情報</div>
+      <div class="payment-icons">
+        <span class="payment-tag">VISA</span>
+        <span class="payment-tag">Mastercard</span>
+        <span class="payment-tag">JCB</span>
+        <span class="payment-tag">AMEX</span>
+      </div>
       <input class="checkout-input" type="text" placeholder="カード名義（ローマ字）" id="c_holder">
       <input class="checkout-input" type="text" placeholder="カード番号 0000 0000 0000 0000" id="c_number" maxlength="19" oninput="formatCardNumber(this)">
       <div class="checkout-row">
@@ -889,6 +942,10 @@
         <input class="checkout-input" type="text" placeholder="セキュリティコード" id="c_cvv" maxlength="4">
       </div>
       <div id="orderSummaryInCheckout" style="background:var(--bg);padding:16px;border:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.8;"></div>
+      <label class="terms-check">
+        <input type="checkbox" id="c_agree">
+        <span><a href="#" onclick="openInfo('terms'); return false;" style="color:var(--dark);text-decoration:underline;">利用規約</a> および <a href="#" onclick="openInfo('privacy'); return false;" style="color:var(--dark);text-decoration:underline;">プライバシーポリシー</a> に同意して注文します</span>
+      </label>
       <button class="pm-add-btn" style="margin-top:8px;" onclick="submitCheckout()">注文を確定する</button>
       <button onclick="backToStep1()" style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;text-align:center;">← お客様情報に戻る</button>
     </div>
@@ -1007,6 +1064,8 @@
         <p>support@kura-market.jp<br>（受付時間：平日 10:00〜18:00）</p>
         <h4>電話</h4>
         <p>03-4521-6680<br>（平日 10:00〜17:00）</p>
+        <h4>所在地</h4>
+        <p>〒150-0041 東京都渋谷区神南2-11-2</p>
         <h4>返信について</h4>
         <p>通常2営業日以内にご返答いたします。土日祝日はお時間をいただく場合があります。</p>
       `
@@ -1015,7 +1074,7 @@
       title: '会社概要',
       body: `
         <h4>KURA MARKET 株式会社</h4>
-        <p>設立：2018年4月<br>代表取締役：斉藤 行夫<br>所在地：東京都渋谷区神南2-11-2<br>電話番号：03-4521-6680<br>事業内容：日本各地の食品・生活雑貨のセレクト販売</p>
+        <p>設立：2018年4月<br>代表取締役：斉藤 行夫<br>所在地：〒150-0041 東京都渋谷区神南2-11-2<br>電話番号：03-4521-6680<br>メール：support@kura-market.jp<br>事業内容：日本各地の食品・生活雑貨のセレクト販売</p>
         <p>KURA MARKETは「本物の品質を、より多くの人へ」をミッションに、職人・生産者と直接契約し、中間業者を排除することで適正価格でお届けしています。</p>
       `
     },
@@ -1043,7 +1102,7 @@
         <h4>所在地</h4>
         <p>〒150-0041 東京都渋谷区神南2-11-2</p>
         <h4>電話番号</h4>
-        <p>03-4521-6680（平日 10:00〜17:00）</p>
+        <p>03-4521-6680（受付時間：平日 10:00〜17:00）</p>
         <h4>メールアドレス</h4>
         <p>support@kura-market.jp</p>
         <h4>販売価格</h4>
@@ -1063,11 +1122,11 @@
     privacy: {
       title: 'プライバシーポリシー',
       body: `
-        <p>KURA MARKET（以下「当社」）は、お客様に安心して本サービスをご利用いただけるよう、以下の通りプライバシーポリシーを定め、個人情報の保護を徹底いたします。</p>
+        <p>KURA MARKET株式会社（以下「当社」）は、お客様に安心して本サービスをご利用いただけるよう、以下の通りプライバシーポリシーを定め、個人情報の保護を徹底いたします。</p>
         <h4>1. 個人情報の適正な取得</h4>
         <p>当社は、商品の配送、お問い合わせ対応、および会員登録の際に、適法かつ公正な手段によってお客様の氏名、住所、連絡先等の情報を取得します。</p>
-        <h4>2. データの安全管理措置</h4>
-        <p>取得した情報はSSL暗号化通信により保護され、外部への漏洩を防止するための厳格なセキュリティ管理体制を維持しています。また、定期的なシステム監査を実施し、データ整合性の確認を行っております。</p>
+        <h4>2. データの安全管理措置（セキュリティ）</h4>
+        <p>取得した情報はSSL（Secure Sockets Layer）暗号化通信により保護され、外部への漏洩を防止するための厳格なセキュリティ管理体制を維持しています。また、クレジットカード情報等は業界基準のセキュリティに準拠して安全に処理されます。</p>
 
         <h4>3. 利用目的</h4>
         <ul>
@@ -1370,10 +1429,17 @@
     const holder = document.getElementById('c_holder').value.trim();
     const number = document.getElementById('c_number').value.replace(/\s/g,'');
     const cvv = document.getElementById('c_cvv').value.trim();
+    const agree = document.getElementById('c_agree').checked;
+
     if (!holder || number.length < 16 || !cvv) {
       showToast('決済情報を正しく入力してください', 'info');
       return;
     }
+    if (!agree) {
+      showToast('利用規約およびプライバシーポリシーへの同意が必要です', 'info');
+      return;
+    }
+
     closeCheckoutModal();
     closeCart();
     cart = [];
