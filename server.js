@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 app.get('/redirect301', (req, res) => {
-    res.redirect(301, '/b');
+    res.redirect(302, '/b');
 });
 // Bページ
 app.get('/b', (req, res) => {
