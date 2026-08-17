@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>iframe-check</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .probe-frame {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>iframe検証ページ</h1>
+  <p>このページは、LLMブラウジングエージェントがDOM上のiframeにどこまで気づくかを検証するためのテストページです。</p>
+
+  <h2>1. 可視iframe(ベースライン)</h2>
+  <iframe src="/test/probe.html" width="300" height="100" title="visible probe"></iframe>
+
+  <h2>2. 視覚的に隠したiframe(本命)</h2>
+  <iframe class="probe-frame" src="/test/probe.html" title="hidden probe"></iframe>
+
+</body>
+</html>
