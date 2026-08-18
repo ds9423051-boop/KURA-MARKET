@@ -4,45 +4,47 @@ export default function handler(req, res) {
     ? forwarded.split(",")[0].trim()
     : req.socket.remoteAddress;
 
-  // User-Agentの取得（存在しない場合は空文字gpt）
   const userAgent = req.headers["user-agent"] || "";
+  const lowerUA = userAgent.toLowerCase();
+  const isChatGPT = lowerUA.includes("chatgpt");
 
   console.log("=== USER-AGENT CLOAKING TEST ===");
   console.log("IP:", ip);
   console.log("User-Agent:", userAgent);
+  console.log("Lower UA:", lowerUA);
+  console.log("Contains chatgpt:", isChatGPT);
   console.log("Path:", req.url);
+  console.log("Timestamp:", new Date().toISOString());
 
-  // 判定キーワード（小文字で比較するためにtoLowerCaseを使用）
-  const isGoogleBot = userAgent.toLowerCase().includes("chatgpt");
+  // キャッシュを完全に無効化
+  res.setHeader(
+    "Cache-Control",
+    "no-store, no-cache, must-revalidate, max-age=0"
+  );
+  res.setHeader("CDN-Cache-Control", "no-store");
+  res.setHeader("Vercel-CDN-Cache-Control", "no-store");
 
-  if (isGoogleBot) {
-    return res.status(200).send(`
+  res.status(200).send(`
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>UA TEST - TARGET (GOOGLE)</title>
+  <title>UA TEST</title>
 </head>
 <body>
-  <h1>TEST-A</h1>
-  <p>Detected User-Agent: ${userAgent}</p>
-  <p>This page is shown only to Google User-Agent requests.</p>
-</body>
-</html>
-    `);
-  }
+  <h1>${isChatGPT ? "TEST-A" : "TEST-B"}</h1>
 
-  return res.status(200).send(`
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>UA TEST - NORMAL</title>
-</head>
-<body>
-  <h1>TEST-B</h1>
-  <p>Normal visitor</p>
-  <p>Your User-Agent: ${userAgent}</p>
+  <p>Detected User-Agent:</p>
+  <pre>${userAgent}</pre>
+
+  <p>Lowercase User-Agent:</p>
+  <pre>${lowerUA}</pre>
+
+  <p>Contains "chatgpt": ${isChatGPT}</p>
+
+  <p>Timestamp: ${new Date().toISOString()}</p>
+
+  <p>IP: ${ip}</p>
 </body>
 </html>
   `);
