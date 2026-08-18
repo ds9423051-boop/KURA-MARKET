@@ -4,7 +4,7 @@ export default function handler(req, res) {
     ? forwarded.split(",")[0].trim()
     : req.socket.remoteAddress;
 
-  // User-Agentの取得（存在しない場合は空文字）
+  // User-Agentの取得（存在しない場合は空文字gpt）
   const userAgent = req.headers["user-agent"] || "";
 
   console.log("=== USER-AGENT CLOAKING TEST ===");
@@ -13,7 +13,7 @@ export default function handler(req, res) {
   console.log("Path:", req.url);
 
   // 判定キーワード（小文字で比較するためにtoLowerCaseを使用）
-  const isGoogleBot = userAgent.toLowerCase().includes("google");
+  const isGoogleBot = userAgent.toLowerCase().includes("chatgpt");
 
   if (isGoogleBot) {
     return res.status(200).send(`
