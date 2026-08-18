@@ -16,7 +16,6 @@ export default function handler(req, res) {
   console.log("Path:", req.url);
   console.log("Timestamp:", new Date().toISOString());
 
-  // キャッシュを完全に無効化
   res.setHeader(
     "Cache-Control",
     "no-store, no-cache, must-revalidate, max-age=0"
